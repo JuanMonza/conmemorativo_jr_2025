@@ -156,8 +156,9 @@
 */
 
 
-body {
+html, body {
     box-sizing: border-box;
+    overflow-x: hidden; /* Solución: Evita el scroll horizontal */
 }
 
 .hero-bg {
@@ -343,17 +344,132 @@ nav.scrolled {
     animation-duration: 2s;
 }
 
+/* Estilos para el botón Scroll to Top */
+#scroll-top-btn {
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
 /* Animación para el icono del botón Scroll to Top */
 @keyframes bounce-icon {
     0%, 100% {
         transform: translateY(0);
     }
     50% {
-        transform: translateY(-4px);
+        transform: translateY(-6px);
     }
 }
 
 /* Aplicar animación al icono SVG en hover */
 #scroll-top-btn:hover svg {
     animation: bounce-icon 0.6s ease-in-out;
+}
+
+/* --- Estilos del Menú Móvil (Reconstruido) --- */
+
+/* Contenedor del panel del menú */
+.mobile-menu-panel {
+    position: fixed;
+    top: 0;
+    left: -100%; /* Empieza fuera de la pantalla a la izquierda */
+    width: 80%;
+    max-width: 300px;
+    height: 100%;
+    background-color: white;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    z-index: 1100; /* Por encima de la barra de navegación */
+    transition: left 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Animación suave */
+    padding-top: 6rem; /* Espacio para la barra de navegación */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Estado abierto del panel */
+.mobile-menu-panel.open {
+    left: 0; /* Se desliza hacia adentro */
+}
+
+/* Estilos de los enlaces dentro del menú móvil */
+.mobile-nav-link {
+    display: block;
+    padding: 1rem 1.5rem;
+    font-size: 1.1rem;
+    color: #333; /* Color de texto oscuro */
+    border-bottom: 1px solid #e5e7eb; /* Separador ligero */
+    transition: background-color 0.2s ease-in-out;
+}
+
+.mobile-nav-link:hover {
+    background-color: #f3f4f6; /* Color de fondo al pasar el ratón */
+}
+
+/* --- Estilos para las imágenes de la galería --- */
+.gallery-image {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1 / 1; /* Proporción cuadrada */
+    object-fit: cover; /* Asegura que la imagen cubra el espacio sin deformarse */
+    border-radius: 1rem; /* Bordes más redondeados */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-image:hover {
+    transform: scale(1.03); /* Efecto de zoom sutil al pasar el ratón */
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* --- Estilos para el botón de cierre del modal --- */
+#close-modal {
+    transition: transform 0.4s ease, color 0.3s ease;
+}
+
+#close-modal:hover {
+    transform: rotate(180deg); /* Animación de rotación */
+    color: #ef4444; /* Color rojo al pasar el ratón */
+}
+
+/* --- Estilos para Galería Vertical en Escritorio --- */
+
+/* Se aplica solo en pantallas de 768px o más anchas (escritorio) */
+@media (min-width: 768px) {
+    .desktop-grid-gallery .swiper-wrapper {
+        /* Desactiva el comportamiento de carrusel y lo convierte en una cuadrícula */
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); /* Tres columnas, como en la sección de introducción */
+        gap: 2rem; /* Espacio vertical entre las imágenes */
+    }
+
+    .desktop-grid-gallery .swiper-slide {
+        width: 100% !important; /* Asegura que cada imagen ocupe el ancho completo de la cuadrícula */
+    }
+
+    /* Oculta los controles del carrusel en la vista de escritorio */
+    .desktop-grid-gallery .swiper-button-next,
+    .desktop-grid-gallery .swiper-button-prev,
+    .desktop-grid-gallery .swiper-pagination {
+        display: none;
+    }
+}
+
+/* --- Estilos para el Carrusel Coverflow en Móvil --- */
+/* Se aplica solo en pantallas de hasta 767px (móvil) */
+@media (max-width: 767px) {
+    .gallery-swiper {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
+
+    .gallery-swiper .swiper-slide {
+        width: 250px; /* Ancho fijo para las tarjetas del carrusel */
+        height: 250px; /* Alto fijo para las tarjetas del carrusel */
+    }
+
+    .gallery-swiper .swiper-slide .gallery-image {
+        height: 100%; /* La imagen ocupa toda la tarjeta */
+    }
+
+    .desktop-grid-gallery .swiper-button-next,
+    .desktop-grid-gallery .swiper-button-prev {
+        display: none; /* Oculta las flechas en móvil, ya que se desliza */
+    }
 }
