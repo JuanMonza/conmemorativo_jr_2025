@@ -3,6 +3,12 @@
   Aquí se definen los estilos personalizados que complementan o sobreescriben
   los estilos del framework (en este caso, TailwindCSS).
 */
+.hidden { display: none !important; }
+
+/* Seguridad: asegurar comportamiento del modal de imagen */
+#image-modal { display: none; align-items: center; justify-content: center; }
+#image-modal:not(.hidden) { display: flex !important; }
+
 
 /*
   Define un comportamiento de desplazamiento suave para toda la página.
@@ -33,60 +39,123 @@
     - `ease-in-out`: La animación empieza y termina suavemente.
     - `forwards`: Mantiene el estado final de la animación (opacidad 1).
 */
-.fade-in {
-  animation: fadeIn 1s ease-in-out forwards;
+.gallery-slider-container {
+  width: 100%;
+  max-width: 1000px;
+  height: 100%;
+  transform-style: preserve-3d;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto 30px auto;
+  position: relative;
+}
+.gallery-slider-container input[type="radio"] { display: none; }
+.gallery-cards {
+  position: relative;
+  width: 100%;
+  height: 360px;
+  margin-bottom: 12px;
+  display: block;
+}
+.gallery-card {
+  position: absolute;
+  width: 48%;
+  max-width: 580px;
+  height: 340px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  transition: transform .5s cubic-bezier(.2,.8,.2,1), opacity .35s ease;
+  cursor: pointer;
+  box-shadow: 0 18px 50px rgba(0,0,0,0.15);
+  border-radius: 14px;
+  overflow: hidden;
+  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+  backdrop-filter: blur(10px) saturate(140%);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+.gallery-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-/*
-  Define los fotogramas clave (keyframes) para la animación `fadeIn`.
-  - `from { opacity: 0; transform: translateY(20px); }`: El estado inicial del elemento.
-    Es invisible (`opacity: 0`) y está ligeramente desplazado hacia abajo (`translateY(20px)`).
-  - `to { opacity: 1; transform: translateY(0); }`: El estado final del elemento.
-    Es completamente visible (`opacity: 1`) y está en su posición original.
-*/
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* Posiciones: left / center / right */
+#item-1:checked ~ .gallery-cards #gallery-6,
+#item-2:checked ~ .gallery-cards #gallery-1,
+#item-3:checked ~ .gallery-cards #gallery-2,
+#item-4:checked ~ .gallery-cards #gallery-3,
+#item-5:checked ~ .gallery-cards #gallery-4,
+#item-6:checked ~ .gallery-cards #gallery-5 {
+  transform: translateX(-120%) scale(.82) rotate(-3deg);
+  opacity: .45;
+  z-index: 0;
+}
+#item-1:checked ~ .gallery-cards #gallery-2,
+#item-2:checked ~ .gallery-cards #gallery-3,
+#item-3:checked ~ .gallery-cards #gallery-4,
+#item-4:checked ~ .gallery-cards #gallery-5,
+#item-5:checked ~ .gallery-cards #gallery-6,
+#item-6:checked ~ .gallery-cards #gallery-1 {
+  transform: translateX(120%) scale(.82) rotate(3deg);
+  opacity: .45;
+  z-index: 0;
+}
+#item-1:checked ~ .gallery-cards #gallery-1,
+#item-2:checked ~ .gallery-cards #gallery-2,
+#item-3:checked ~ .gallery-cards #gallery-3,
+#item-4:checked ~ .gallery-cards #gallery-4,
+#item-5:checked ~ .gallery-cards #gallery-5,
+#item-6:checked ~ .gallery-cards #gallery-6 {
+  transform: translateX(0) scale(1) rotate(0deg);
+  opacity: 1;
+  z-index: 2;
 }
 
-/*
-  Estilos para los elementos de la galería.
-  - `transition: all 0.3s ease-in-out`: Aplica una transición suave a todas las propiedades
-    que cambien (como `transform` y `box-shadow`) durante 0.3 segundos.
-*/
-.gallery-item {
-  transition: all 0.3s ease-in-out;
+/* Navigation dots */
+.gallery-nav { display:flex; gap:10px; justify-content:center; margin-top:10px; }
+.gallery-nav label { width:12px; height:12px; border-radius:50%; background:rgba(0,0,0,0.12); cursor:pointer; display:inline-block; transition: all .25s ease; border: 1px solid rgba(255,255,255,0.06);} 
+#item-1:checked ~ .gallery-nav label[for="item-1"],
+#item-2:checked ~ .gallery-nav label[for="item-2"],
+#item-3:checked ~ .gallery-nav label[for="item-3"],
+#item-4:checked ~ .gallery-nav label[for="item-4"],
+#item-5:checked ~ .gallery-nav label[for="item-5"],
+#item-6:checked ~ .gallery-nav label[for="item-6"] {
+  background: #2992dc; box-shadow: 0 0 0 6px rgba(41,146,220,0.08);
 }
 
-/*
-  Efecto al pasar el ratón (hover) sobre un elemento de la galería.
-  - `transform: scale(1.05)`: Aumenta ligeramente el tamaño del elemento.
-  - `box-shadow`: Añade una sombra sutil para dar una sensación de profundidad.
-*/
-.gallery-item:hover {
-  transform: scale(1.05);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+/* Responsive - móvil: mostrar solo la tarjeta central más grande */
+@media (max-width: 768px) {
+  .gallery-card { width: 92%; height: 260px; left: 0; right: 0; }
+  #item-1:checked ~ .gallery-cards #gallery-6,
+  #item-2:checked ~ .gallery-cards #gallery-1,
+  #item-3:checked ~ .gallery-cards #gallery-2,
+  #item-4:checked ~ .gallery-cards #gallery-3,
+  #item-5:checked ~ .gallery-cards #gallery-4,
+  #item-6:checked ~ .gallery-cards #gallery-5,
+  #item-1:checked ~ .gallery-cards #gallery-2,
+  #item-2:checked ~ .gallery-cards #gallery-3,
+  #item-3:checked ~ .gallery-cards #gallery-4,
+  #item-4:checked ~ .gallery-cards #gallery-5,
+  #item-5:checked ~ .gallery-cards #gallery-6,
+  #item-6:checked ~ .gallery-cards #gallery-1 { transform: translateX(0) scale(.9) rotate(0deg); opacity: .45; z-index: 0; }
+  #item-1:checked ~ .gallery-cards #gallery-1,
+  #item-2:checked ~ .gallery-cards #gallery-2,
+  #item-3:checked ~ .gallery-cards #gallery-3,
+  #item-4:checked ~ .gallery-cards #gallery-4,
+  #item-5:checked ~ .gallery-cards #gallery-5,
+  #item-6:checked ~ .gallery-cards #gallery-6 { transform: translateX(0) scale(1) rotate(0deg); opacity: 1; z-index: 2; }
 }
 
-/*
-  Estilo para el enlace de navegación activo.
-  - `color: #1a202c`: Un color de texto más oscuro para resaltar.
-  - `font-weight: 600`: Texto en seminegrita.
-*/
-.nav-link.active {
-  color: #1a202c; /* text-gray-900 */
-  font-weight: 600;
-}
+/* Mostrar/ocultar versiones según dispositivo */
+.desktop-only { display: block; }
+.mobile-only { display: none; }
 
-/*
-  Estilos Glassmorphism - Efecto Cristal iOS 26
-*/
+@media (max-width: 767px) {
+    .desktop-only { display: none !important; }
+    .mobile-only { display: block !important; }
+}
 .glass {
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(20px) saturate(180%);
@@ -170,9 +239,20 @@ html, body {
 }
 
 .fade-in {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.8s ease-out;
+    /* Mostrar por defecto para evitar que la página quede oculta
+       si el JS falla o se ejecuta con errores. La animación de entrada
+       seguirá funcionando cuando el script añada la clase `visible`. */
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.6s ease-out;
+}
+
+/* Clase auxiliar: si en el futuro queremos ocultar elementos hasta que
+   el JS los muestre, aplicar `fade-in--hidden` en HTML. No se usa por
+   defecto para evitar que el sitio desaparezca si el JS no se ejecuta. */
+.fade-in--hidden {
+    opacity: 0 !important;
+    transform: translateY(30px) !important;
 }
 
 .fade-in.visible {

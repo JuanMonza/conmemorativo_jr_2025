@@ -457,32 +457,60 @@
                 <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">Galería del Parque</h2>
                 <p class="text-xl text-gray-600 max-w-3xl mx-auto">Descubre la belleza y serenidad de nuestros espacios a través de estas imágenes</p>
             </div>
-            <div class="gallery-slider-container">
-                <input type="radio" name="slider" id="item-1" checked>
-                <input type="radio" name="slider" id="item-2">
-                <input type="radio" name="slider" id="item-3">
-                <input type="radio" name="slider" id="item-4">
-                <input type="radio" name="slider" id="item-5">
-                <input type="radio" name="slider" id="item-6">
-                <div class="gallery-cards">
-                    <label class="gallery-card" for="item-1" id="gallery-1">
-                        <img src="img/letreo.jpg" alt="Vista del parque 1" class="gallery-image">
-                    </label>
-                    <label class="gallery-card" for="item-2" id="gallery-2">
-                        <img src="img/ciudad-y-hierba-con-cielo-azul.webp" alt="Vista del parque 2" class="gallery-image">
-                    </label>
-                    <label class="gallery-card" for="item-3" id="gallery-3">
-                        <img src="img/panorama-del-parque-de-la-ciudad-de-un-hermoso-parque.webp" alt="Vista del parque 3" class="gallery-image">
-                    </label>
-                    <label class="gallery-card" for="item-4" id="gallery-4">
-                        <img src="img/parque-con-un-camino-de-madera-y-bancos.webp" alt="Vista del parque 4" class="gallery-image">
-                    </label>
-                    <label class="gallery-card" for="item-5" id="gallery-5">
-                        <img src="img/pathway-3596034_1280.webp" alt="Vista del parque 5" class="gallery-image">
-                    </label>
-                    <label class="gallery-card" for="item-6" id="gallery-6">
-                        <img src="img/autumn-3731094_1280.jpg" alt="Vista del parque 6" class="gallery-image">
-                    </label>
+            <!-- Versión escritorio: Swiper (restaurada) -->
+            <div class="desktop-only">
+                <div class="swiper-container gallery-swiper relative max-w-5xl mx-auto desktop-grid-gallery">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide fade-in"><img src="img/letreo.jpg" alt="Vista del parque 1" class="gallery-image"></div>
+                        <div class="swiper-slide fade-in"><img src="img/ciudad-y-hierba-con-cielo-azul.webp" alt="Vista del parque 2" class="gallery-image"></div>
+                        <div class="swiper-slide fade-in"><img src="img/panorama-del-parque-de-la-ciudad-de-un-hermoso-parque.webp" alt="Vista del parque 3" class="gallery-image"></div>
+                        <div class="swiper-slide fade-in"><img src="img/parque-con-un-camino-de-madera-y-bancos.webp" alt="Vista del parque 4" class="gallery-image"></div>
+                        <div class="swiper-slide fade-in"><img src="img/pathway-3596034_1280.webp" alt="Vista del parque 5" class="gallery-image"></div>
+                        <div class="swiper-slide fade-in"><img src="img/autumn-3731094_1280.jpg" alt="Vista del parque 6" class="gallery-image"></div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-next text-gray-700"></div>
+                    <div class="swiper-button-prev text-gray-700"></div>
+                </div>
+            </div>
+
+            <!-- Versión móvil: slider CSS (nuestro carrusel visual) -->
+            <div class="mobile-only">
+                <div class="gallery-slider-container">
+                    <input type="radio" name="slider" id="item-1" checked>
+                    <input type="radio" name="slider" id="item-2">
+                    <input type="radio" name="slider" id="item-3">
+                    <input type="radio" name="slider" id="item-4">
+                    <input type="radio" name="slider" id="item-5">
+                    <input type="radio" name="slider" id="item-6">
+                    <div class="gallery-cards">
+                        <label class="gallery-card" for="item-1" id="gallery-1">
+                            <img src="img/letreo.jpg" alt="Vista del parque 1" class="gallery-image">
+                        </label>
+                        <label class="gallery-card" for="item-2" id="gallery-2">
+                            <img src="img/ciudad-y-hierba-con-cielo-azul.webp" alt="Vista del parque 2" class="gallery-image">
+                        </label>
+                        <label class="gallery-card" for="item-3" id="gallery-3">
+                            <img src="img/panorama-del-parque-de-la-ciudad-de-un-hermoso-parque.webp" alt="Vista del parque 3" class="gallery-image">
+                        </label>
+                        <label class="gallery-card" for="item-4" id="gallery-4">
+                            <img src="img/parque-con-un-camino-de-madera-y-bancos.webp" alt="Vista del parque 4" class="gallery-image">
+                        </label>
+                        <label class="gallery-card" for="item-5" id="gallery-5">
+                            <img src="img/pathway-3596034_1280.webp" alt="Vista del parque 5" class="gallery-image">
+                        </label>
+                        <label class="gallery-card" for="item-6" id="gallery-6">
+                            <img src="img/autumn-3731094_1280.jpg" alt="Vista del parque 6" class="gallery-image">
+                        </label>
+                    </div>
+                    <div class="gallery-nav" aria-hidden="false">
+                        <label for="item-1" aria-label="mostrar imagen 1"></label>
+                        <label for="item-2" aria-label="mostrar imagen 2"></label>
+                        <label for="item-3" aria-label="mostrar imagen 3"></label>
+                        <label for="item-4" aria-label="mostrar imagen 4"></label>
+                        <label for="item-5" aria-label="mostrar imagen 5"></label>
+                        <label for="item-6" aria-label="mostrar imagen 6"></label>
+                    </div>
                 </div>
             </div>
         </div>
@@ -968,7 +996,11 @@
         });
 
         // Image Modal Logic
-        const galleryImages = document.querySelectorAll('.gallery-swiper .swiper-slide img');
+        // Selecciona imágenes tanto de la galería Swiper original como de la nueva galería-cards
+        const galleryImagesNodeList = document.querySelectorAll('.gallery-swiper .swiper-slide img');
+        const galleryCardsNodeList = document.querySelectorAll('.gallery-cards .gallery-image');
+        // Convertir NodeLists a array y concatenar
+        const galleryImages = Array.from(galleryImagesNodeList).concat(Array.from(galleryCardsNodeList));
         const modal = document.getElementById('image-modal');
         const modalImg = document.getElementById('modal-image');
         const closeModal = document.getElementById('close-modal');
