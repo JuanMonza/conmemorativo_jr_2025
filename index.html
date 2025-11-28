@@ -1092,6 +1092,44 @@
             });
         });
     </script>
+        <script>
+        // Diagnostic: unregister Service Workers and clear Cache Storage
+        (async () => {
+            try {
+                if ('serviceWorker' in navigator) {
+                    const regs = await navigator.serviceWorker.getRegistrations();
+                    if (regs.length) {
+                        console.log('Diagnostic: unregistering service workers', regs);
+                        for (const r of regs) await r.unregister();
+                    } else {
+                        console.log('Diagnostic: no service workers registered');
+                    }
+                }
+            } catch (e) {
+                console.warn('Diagnostic: serviceWorker unregister error', e);
+            }
+
+            try {
+                if ('caches' in window) {
+                    const keys = await caches.keys();
+                    if (keys.length) {
+                        console.log('Diagnostic: clearing caches', keys);
+                        for (const k of keys) await caches.delete(k);
+                    } else {
+                        console.log('Diagnostic: no caches to clear');
+                    }
+                }
+            } catch (e) {
+                console.warn('Diagnostic: cache clear error', e);
+            }
+
+            // Reload once with a flag to avoid reload loops
+            if (!location.search.includes('sw_cleared=1')) {
+                const sep = location.href.includes('?') ? '&' : '?';
+                location.replace(location.href + sep + 'sw_cleared=1');
+            }
+        })();
+        </script>
 </body>
 
 </html>
