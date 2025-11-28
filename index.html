@@ -668,15 +668,18 @@
             </div>
             <div class="fade-in">
                 <div id="viewer-360"
-                    class="w-full h-96 md:h-[500px] rounded-xl overflow-hidden bg-gray-200">
-                    <iframe src="https://my.matterport.com/models/gXBj66LW7wm?section=media" 
-                            width="100%" 
-                            height="100%" 
-                            frameborder="0" 
-                            allowfullscreen 
-                            allow="xr-spatial-tracking"
-                            class="rounded-xl">
-                    </iframe>
+                    class="w-full h-96 md:h-[500px] rounded-xl overflow-hidden bg-gray-200 relative">
+                    <div id="matterport-wrap" class="w-full h-full relative">
+                        <div id="matterport-placeholder" class="absolute inset-0 flex items-center justify-center p-4">
+                            <div class="text-center">
+                                <p class="text-gray-600 mb-4">Experiencia 360° disponible.</p>
+                                <button id="load-360-btn" class="bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg">Cargar Experiencia 360</button>
+                            </div>
+                        </div>
+                        <button id="open-360-full" class="absolute top-4 right-4 bg-black/40 text-white px-3 py-2 rounded hidden">Ver en pantalla completa</button>
+                        <!-- iframe se inyectará aquí al cargar -->
+                        <div id="matterport-iframe-container" class="w-full h-full"></div>
+                    </div>
                 </div>
                 <div class="mt-8 text-center">
                     <div class="grid md:grid-cols-3 gap-4 max-w-2xl mx-auto">
@@ -1092,6 +1095,94 @@
             });
         });
     </script>
+        <script>
+        // Lazy-load Matterport iframe + fullscreen modal
+        (function(){
+            const matterportUrl = 'https://my.matterport.com/models/gXBj66LW7wm?section=media';
+            const loadBtn = document.getElementById('load-360-btn');
+            const placeholder = document.getElementById('matterport-placeholder');
+            const iframeContainer = document.getElementById('matterport-iframe-container');
+            const openFullBtn = document.getElementById('open-360-full');
+            let iframeLoaded = false;
+
+            function createIframe(attrs = {}){
+                const iframe = document.createElement('iframe');
+                iframe.src = matterportUrl;
+                iframe.width = '100%';
+                iframe.height = '100%';
+                iframe.frameBorder = '0';
+                iframe.allow = 'xr-spatial-tracking; fullscreen; autoplay';
+                iframe.className = 'w-full h-full rounded-xl';
+                // set title for accessibility
+                iframe.title = 'Tour 360° Jardines de Renacer';
+                return iframe;
+            }
+
+            async function loadIframe(){
+                if (iframeLoaded) return;
+                iframeLoaded = true;
+                placeholder.classList.add('hidden');
+                const iframe = createIframe();
+                iframeContainer.appendChild(iframe);
+                openFullBtn.classList.remove('hidden');
+            }
+
+            // Load on user click
+            loadBtn?.addEventListener('click', loadIframe);
+
+            // Lazy-load when section enters viewport
+            try{
+                const observer = new IntersectionObserver((entries, obs) => {
+                    entries.forEach(e => {
+                        if (e.isIntersecting) {
+                            loadIframe();
+                            obs.unobserve(e.target);
+                        }
+                    });
+                }, {rootMargin: '0px 0px 200px 0px', threshold: 0.1});
+                const viewer = document.getElementById('viewer-360');
+                if (viewer) observer.observe(viewer);
+            } catch(e){
+                // IntersectionObserver may not be supported; rely on click
+                console.warn('IntersectionObserver not available, lazy load on click only', e);
+            }
+
+            // Fullscreen modal
+            openFullBtn?.addEventListener('click', () => {
+                // create overlay with iframe (fresh instance to avoid cross-origin resizing issues)
+                const overlay = document.createElement('div');
+                overlay.id = 'matterport-fullscreen-overlay';
+                overlay.style.position = 'fixed';
+                overlay.style.inset = '0';
+                overlay.style.zIndex = '2000';
+                overlay.style.background = 'rgba(0,0,0,0.92)';
+                overlay.style.display = 'flex';
+                overlay.style.alignItems = 'center';
+                overlay.style.justifyContent = 'center';
+
+                const frame = createIframe();
+                frame.style.width = '100%';
+                frame.style.height = '100%';
+                frame.style.maxWidth = '1400px';
+                frame.style.maxHeight = '90vh';
+
+                const close = document.createElement('button');
+                close.textContent = 'Cerrar';
+                close.style.position = 'absolute';
+                close.style.top = '16px';
+                close.style.right = '16px';
+                close.style.zIndex = '2010';
+                close.className = 'bg-white text-black px-3 py-2 rounded';
+                close.addEventListener('click', () => document.body.removeChild(overlay));
+
+                overlay.appendChild(frame);
+                overlay.appendChild(close);
+                document.body.appendChild(overlay);
+            });
+
+        })();
+        </script>
+
         <script>
         // Diagnostic: unregister Service Workers and clear Cache Storage
         (async () => {
