@@ -11,19 +11,31 @@ export default function Services() {
   const services = [
     {
       title: "Protocolo / Gala",
-      icon: "✨",
+      icon: (
+        <svg className="w-12 h-12 text-yellow-600" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M5,16L3,5L8.5,10L12,4L15.5,10L21,5L19,16H5M19,19A1,1 0 0,1 18,20H6A1,1 0 0,1 5,19V18H19V19Z" />
+        </svg>
+      ),
       color: "yellow",
       items: ["Calle de Honor", "Acompañamiento musical", "Globos", "Pergamino", "Fotografía"]
     },
     {
       title: "Clásico",
-      icon: "🏛️",
+      icon: (
+        <svg className="w-12 h-12 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M10,2H14A2,2 0 0,1 16,4V6H20A2,2 0 0,1 22,8V11H21V22H3V11H2V8A2,2 0 0,1 4,6H8V4A2,2 0 0,1 10,2M10,6H14V4H10V6M13,16V18H11V16H13M13,12V14H11V12H13Z" />
+        </svg>
+      ),
       color: "blue",
       description: "Ritual de acuerdo a la religión. Una ceremonia tradicional que honra las creencias y valores de tu ser querido"
     },
     {
       title: "Lúdico",
-      icon: "🎉",
+      icon: (
+        <svg className="w-12 h-12 text-purple-600" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M12,6A6,6 0 0,1 18,12A6,6 0 0,1 12,18A6,6 0 0,1 6,12A6,6 0 0,1 12,6M12,8A4,4 0 0,0 8,12A4,4 0 0,0 12,16A4,4 0 0,0 16,12A4,4 0 0,0 12,8Z" />
+        </svg>
+      ),
       color: "purple",
       items: ["Su vida contada en un video", "Juegos pirotécnicos", "Celebración de la vida"]
     }
@@ -56,7 +68,7 @@ export default function Services() {
               className={`glass-card p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all border-t-4 border-${service.color}-500`}
             >
               <div className="text-center mb-6">
-                <div className="text-5xl mb-4">{service.icon}</div>
+                <div className="flex justify-center mb-4">{service.icon}</div>
                 <h3 className="text-2xl font-bold text-gray-800 mb-2">{service.title}</h3>
               </div>
               {service.items ? (
