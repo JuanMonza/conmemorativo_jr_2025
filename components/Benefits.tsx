@@ -19,7 +19,7 @@ export default function Benefits() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-6 title-underline title-shadow">
-            <span className="title-gradient-blue">Beneficios</span> del Producto
+            <span className="text-emerald-600">Beneficios</span> del Producto
           </h2>
           <p className="text-xl text-gray-600">Espacios diseñados con amor y respeto para honrar la memoria</p>
         </motion.div>
@@ -30,9 +30,9 @@ export default function Benefits() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
             transition={{ duration: 0.5 }}
-            whileHover={{ scale: 1.02 }}
-            className="glass-card p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all"
-            style={{ background: 'linear-gradient(135deg, rgba(220, 252, 231, 0.7), rgba(219, 234, 254, 0.7))' }}
+            whileHover={{ scale: 1.02, y: -5 }}
+            className="glass-card p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all"
+            style={{ background: 'linear-gradient(135deg, rgba(220, 252, 231, 0.85), rgba(219, 234, 254, 0.85))' }}
           >
             <div className="flex items-center mb-6">
               <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mr-6">

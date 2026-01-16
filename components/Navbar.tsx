@@ -36,8 +36,10 @@ export default function Navbar() {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
-        className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-          isScrolled ? 'bg-white/95 backdrop-blur-md shadow-lg' : 'bg-transparent'
+        className={`fixed top-0 w-full z-50 transition-all duration-300 border-b-4 ${
+          isScrolled 
+            ? 'bg-white/85 backdrop-blur-xl shadow-2xl border-emerald-500/40' 
+            : 'bg-white/75 backdrop-blur-lg shadow-lg border-emerald-400/30'
         }`}
       >
         <div className="max-w-7xl mx-auto">
@@ -67,7 +69,7 @@ export default function Navbar() {
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   whileHover={{ scale: 1.1, color: '#10b981' }}
                   className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                    isScrolled ? 'text-gray-800 hover:text-green-600' : 'text-white hover:text-green-300'
+                    isScrolled ? 'text-gray-800 hover:text-emerald-600' : 'text-gray-900 hover:text-emerald-600'
                   }`}
                 >
                   {item.label}
@@ -81,7 +83,7 @@ export default function Navbar() {
               className="md:hidden -mr-4 p-4 focus:outline-none"
             >
               <svg
-                className={`h-6 w-6 transition-colors ${isScrolled ? 'text-gray-800' : 'text-white'}`}
+                className={`h-6 w-6 transition-colors ${isScrolled ? 'text-gray-900' : 'text-gray-900'}`}
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -118,7 +120,7 @@ export default function Navbar() {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.3, delay: index * 0.05 }}
                   whileHover={{ x: 10, color: '#10b981' }}
-                  className="text-gray-800 text-lg font-medium hover:text-green-600 transition-colors"
+                  className="text-gray-900 text-lg font-medium hover:text-emerald-600 transition-colors"
                 >
                   {item.label}
                 </motion.a>

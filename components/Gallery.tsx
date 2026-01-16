@@ -40,7 +40,7 @@ export default function Gallery() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">Galería del Parque</h2>
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Galería del <span className="text-emerald-600">Parque</span></h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Descubre la belleza y serenidad de nuestros espacios a través de estas imágenes
           </p>
@@ -53,9 +53,9 @@ export default function Gallery() {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ scale: 1.05, y: -5 }}
               onClick={() => setSelectedImage(index)}
-              className="relative h-64 rounded-xl overflow-hidden shadow-lg cursor-pointer"
+              className="relative h-64 rounded-xl overflow-hidden shadow-xl hover:shadow-2xl cursor-pointer border-2 border-white/50 backdrop-blur-sm"
             >
               <Image
                 src={image.src}
@@ -79,17 +79,17 @@ export default function Gallery() {
         >
           <button
             onClick={() => setSelectedImage(null)}
-            className="absolute top-5 right-8 text-white text-5xl font-bold hover:text-gray-300"
+            className="absolute top-5 right-8 text-white text-5xl font-bold hover:text-gray-300 bg-black/30 backdrop-blur-md rounded-full w-14 h-14 flex items-center justify-center"
           >
             &times;
           </button>
           <button
             onClick={(e) => { e.stopPropagation(); prevImage(); }}
-            className="absolute left-4 text-white text-3xl bg-black/30 p-2 rounded-full hover:bg-black/50"
+            className="absolute left-4 text-white text-3xl bg-black/50 backdrop-blur-md p-4 rounded-full hover:bg-black/70 transition-all"
           >
             ‹
           </button>
-          <div className="relative max-w-4xl max-h-[90vh] w-full h-full">
+          <div className="relative max-w-4xl max-h-[90vh] w-full h-full bg-white/10 backdrop-blur-lg rounded-2xl overflow-hidden border-2 border-white/30 shadow-2xl">
             <Image
               src={images[selectedImage].src}
               alt={images[selectedImage].alt}
@@ -99,7 +99,7 @@ export default function Gallery() {
           </div>
           <button
             onClick={(e) => { e.stopPropagation(); nextImage(); }}
-            className="absolute right-4 text-white text-3xl bg-black/30 p-2 rounded-full hover:bg-black/50"
+            className="absolute right-4 text-white text-3xl bg-black/50 backdrop-blur-md p-4 rounded-full hover:bg-black/70 transition-all"
           >
             ›
           </button>

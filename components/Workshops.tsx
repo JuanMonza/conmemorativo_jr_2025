@@ -25,7 +25,7 @@ export default function Workshops() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-6 title-underline title-shadow">
-            Talleres de <span className="title-gradient">Duelo</span>
+            Talleres de <span className="text-emerald-600">Duelo</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">Acompañamiento profesional en tu proceso de sanación</p>
         </motion.div>
@@ -35,8 +35,8 @@ export default function Workshops() {
             initial={{ opacity: 0, x: -60 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -60 }}
             transition={{ duration: 0.6 }}
-            className="glass-card rounded-2xl p-8"
-            style={{ background: 'linear-gradient(135deg, rgba(243, 232, 255, 0.7), rgba(252, 231, 243, 0.7))' }}
+            className="glass-card rounded-2xl p-8 shadow-xl"
+            style={{ background: 'linear-gradient(135deg, rgba(243, 232, 255, 0.85), rgba(252, 231, 243, 0.85))' }}
           >
             <div className="text-center flex flex-col items-center justify-center h-full">
               <div className="text-6xl mb-6">💜</div>

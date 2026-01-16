@@ -26,7 +26,7 @@ export default function Alliances() {
           className="text-center mb-16"
         >
           <Image src="/img/vive+_logo.png" alt="Vive+ Logo" width={96} height={96} className="mx-auto mb-4" />
-          <h2 className="text-4xl md:text-5xl font-bold title-underline title-shadow">Alianzas</h2>
+          <h2 className="text-4xl md:text-5xl font-bold title-underline title-shadow">Alianzas <span className="text-emerald-600">Vive+</span></h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto mt-6">Beneficios adicionales para ti y tu familia</p>
         </motion.div>
 
@@ -37,8 +37,8 @@ export default function Alliances() {
               initial={{ opacity: 0, y: 50 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
               transition={{ duration: 0.5, delay: index * 0.15 }}
-              whileHover={{ scale: 1.05, rotate: 1 }}
-              className="glass-card p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all"
+              whileHover={{ scale: 1.05, rotate: 1, y: -5 }}
+              className="glass-card p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all"
             >
               <div className="text-center">
                 <div className="text-6xl mb-4">{benefit.icon}</div>

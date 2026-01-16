@@ -19,7 +19,7 @@ export default function Purpose() {
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -60 }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-4xl font-bold text-gray-800 mb-6">Nuestro Propósito</h2>
+            <h2 className="text-4xl font-bold text-gray-800 mb-6">Nuestro <span className="text-emerald-600">Propósito</span></h2>
             <p className="text-lg text-gray-600 mb-6 leading-relaxed">
               Jardines de Renacer nace de la necesidad de crear un espacio donde las familias puedan encontrar 
               consuelo, paz y una conexión especial con sus seres queridos. Cada elemento del parque ha sido 
@@ -54,7 +54,7 @@ export default function Purpose() {
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 60 }}
             transition={{ duration: 0.6 }}
             whileHover={{ scale: 1.02 }}
-            className="relative h-96 rounded-2xl overflow-hidden shadow-lg"
+            className="relative h-96 rounded-2xl overflow-hidden shadow-2xl border-4 border-white/50 backdrop-blur-sm"
           >
             <Image
               src="/img/panorama-del-parque-de-la-ciudad-de-un-hermoso-parque.webp"

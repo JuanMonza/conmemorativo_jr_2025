@@ -40,7 +40,7 @@ export default function Services() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-6 title-underline title-shadow">
-            <span className="title-gradient">Servicios</span> Personalizados
+            <span className="text-emerald-600">Servicios</span> Personalizados
           </h2>
           <p className="text-xl text-gray-600">Despedida final con el toque especial que tu ser querido merece</p>
         </motion.div>
@@ -52,8 +52,8 @@ export default function Services() {
               initial={{ opacity: 0, y: 50 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
               transition={{ duration: 0.5, delay: index * 0.2 }}
-              whileHover={{ y: -10 }}
-              className={`glass-card p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all border-t-4 border-${service.color}-500`}
+              whileHover={{ y: -10, scale: 1.02 }}
+              className={`glass-card p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all border-t-4 border-${service.color}-500`}
             >
               <div className="text-center mb-6">
                 <div className="text-5xl mb-4">{service.icon}</div>

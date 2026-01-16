@@ -21,7 +21,7 @@ export default function Experience360() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">Experiencia Virtual 360°</h2>
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Experiencia Virtual <span className="text-emerald-600">360°</span></h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Explora el parque desde la comodidad de tu hogar con nuestra experiencia inmersiva 360°
           </p>
@@ -33,11 +33,11 @@ export default function Experience360() {
           transition={{ duration: 0.6 }}
           className="relative"
         >
-          <div className="w-full h-96 md:h-[500px] rounded-xl overflow-hidden bg-gray-200 relative">
+          <div className="w-full h-96 md:h-[500px] rounded-xl overflow-hidden bg-gray-200 relative shadow-2xl border-4 border-white/50 backdrop-blur-sm">
             {!loaded ? (
-              <div className="absolute inset-0 flex items-center justify-center p-4">
-                <div className="text-center">
-                  <p className="text-gray-600 mb-4">Experiencia 360° disponible.</p>
+              <div className="absolute inset-0 flex items-center justify-center p-4 bg-gradient-to-br from-green-50/90 to-blue-50/90 backdrop-blur-xl">
+                <div className="text-center glass-card p-8 rounded-2xl shadow-xl">
+                  <p className="text-gray-600 mb-4 text-lg font-semibold">Experiencia 360° disponible.</p>
                   <motion.button
                     onClick={() => setLoaded(true)}
                     whileHover={{ scale: 1.05 }}
@@ -63,7 +63,7 @@ export default function Experience360() {
                   onClick={() => setFullscreen(true)}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="absolute top-4 right-4 bg-black/40 text-white px-3 py-2 rounded hover:bg-black/60 transition-colors"
+                  className="absolute top-4 right-4 bg-black/50 backdrop-blur-md text-white px-4 py-2 rounded-lg hover:bg-black/70 transition-all shadow-lg"
                 >
                   Ver en pantalla completa
                 </motion.button>
