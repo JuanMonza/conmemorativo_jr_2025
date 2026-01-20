@@ -8,6 +8,7 @@ export default function Gallery() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   const images = [
     { src: "/img/letreo.jpg", alt: "Vista del parque 1" },
@@ -30,6 +31,14 @@ export default function Gallery() {
     }
   };
 
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % images.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + images.length) % images.length);
+  };
+
   return (
     <section id="galeria" className="py-20 bg-gray-50">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -46,7 +55,8 @@ export default function Gallery() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {/* Desktop: Grid */}
+        <div className="hidden md:grid md:grid-cols-3 gap-6">
           {images.map((image, index) => (
             <motion.div
               key={index}
@@ -65,6 +75,77 @@ export default function Gallery() {
               />
             </motion.div>
           ))}
+        </div>
+
+        {/* Mobile: Carrusel */}
+        <div className="md:hidden relative overflow-hidden px-4">
+          <div className="py-8">
+            <div className="relative h-80 flex items-center justify-center">
+              {images.map((image, index) => {
+                const offset = index - currentSlide;
+                const isActive = index === currentSlide;
+                return (
+                  <motion.div
+                    key={index}
+                    className="absolute w-full px-2"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{
+                      opacity: isActive ? 1 : 0,
+                      scale: isActive ? 1 : 0.8,
+                      zIndex: isActive ? 10 : 1
+                    }}
+                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                    onClick={() => isActive && setSelectedImage(index)}
+                  >
+                    <div
+                      className="relative h-72 rounded-xl overflow-hidden shadow-xl cursor-pointer border-2 border-white/50 backdrop-blur-sm"
+                    >
+                      <Image
+                        src={image.src}
+                        alt={image.alt}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Botones de navegación */}
+          <button
+            onClick={prevSlide}
+            className="absolute left-0 top-1/2 -translate-y-1/2 bg-white/80 backdrop-blur-sm p-2 rounded-full shadow-lg hover:bg-white transition-all z-10"
+            aria-label="Anterior"
+          >
+            <svg className="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+          <button
+            onClick={nextSlide}
+            className="absolute right-0 top-1/2 -translate-y-1/2 bg-white/80 backdrop-blur-sm p-2 rounded-full shadow-lg hover:bg-white transition-all z-10"
+            aria-label="Siguiente"
+          >
+            <svg className="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+
+          {/* Indicadores de navegación */}
+          <div className="flex justify-center gap-2 mt-6">
+            {images.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentSlide(index)}
+                className={`w-2 h-2 rounded-full transition-all ${
+                  currentSlide === index ? 'bg-emerald-600 w-6' : 'bg-gray-300'
+                }`}
+                aria-label={`Ir a imagen ${index + 1}`}
+              />
+            ))}
+          </div>
         </div>
       </div>
 

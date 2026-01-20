@@ -32,7 +32,8 @@ export default function Introduction() {
       ),
       title: "Más Sostenible",
       description: "Una decisión consciente en armonía con la tierra, porque protege el entorno",
-      color: "green"
+      color: "green",
+      bgColor: "bg-green-100"
     },
     {
       icon: (
@@ -42,7 +43,8 @@ export default function Introduction() {
       ),
       title: "Más Íntimo",
       description: "Un tributo eterno que acerca el recuerdo al corazón de la familia",
-      color: "pink"
+      color: "pink",
+      bgColor: "bg-pink-100"
     },
     {
       icon: (
@@ -52,7 +54,8 @@ export default function Introduction() {
       ),
       title: "Más Accesible",
       description: "Evita los altos costos de un entierro tradicional sin sacrificar dignidad",
-      color: "blue"
+      color: "blue",
+      bgColor: "bg-blue-100"
     }
   ];
 
@@ -92,7 +95,7 @@ export default function Introduction() {
               <motion.div
                 whileHover={{ rotate: 360 }}
                 transition={{ duration: 0.6 }}
-                className={`w-20 h-20 bg-${feature.color}-100 rounded-full flex items-center justify-center mx-auto mb-6`}
+                className={`w-20 h-20 ${feature.bgColor} rounded-full flex items-center justify-center mx-auto mb-6`}
               >
                 {feature.icon}
               </motion.div>

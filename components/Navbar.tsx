@@ -23,6 +23,7 @@ export default function Navbar() {
     { href: '#servicios', label: 'Servicios' },
     { href: '#alianzas', label: 'Alianzas' },
     { href: '#talleres', label: 'Talleres' },
+    { href: '#cotizacion', label: 'Cotización' },
     { href: '#contacto', label: 'Contacto' },
   ];
 
@@ -59,7 +60,7 @@ export default function Navbar() {
             </motion.div>
 
             {/* Desktop Menu */}
-            <div className="hidden md:flex md:items-baseline md:space-x-4">
+            <div className="hidden md:flex md:items-center md:space-x-4">
               {menuItems.map((item, index) => (
                 <motion.a
                   key={item.href}
@@ -75,6 +76,42 @@ export default function Navbar() {
                   {item.label}
                 </motion.a>
               ))}
+              
+              {/* CTA Button - Experiencia 360 */}
+              <motion.a
+                href="#experiencia360"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ 
+                  duration: 0.6,
+                  delay: 0.8
+                }}
+                whileHover={{ scale: 1.1, rotate: [0, -5, 5, -5, 0] }}
+                whileTap={{ scale: 0.95 }}
+                className="relative ml-4 px-5 py-2.5 bg-gradient-to-r from-emerald-500 to-green-600 text-white rounded-full font-bold text-sm shadow-lg hover:shadow-xl transition-all overflow-hidden group"
+              >
+                <motion.span
+                  className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity"
+                />
+                <span className="relative flex items-center gap-2">
+                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8Z" />
+                  </svg>
+                  Tour Virtual 360°
+                </span>
+                <motion.div
+                  className="absolute inset-0 border-2 border-white/50 rounded-full"
+                  animate={{
+                    scale: [1, 1.2, 1],
+                    opacity: [0.5, 0, 0.5]
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                />
+              </motion.a>
             </div>
 
             {/* Mobile Menu Button */}
@@ -100,17 +137,17 @@ export default function Navbar() {
         </div>
       </motion.nav>
 
-      {/* Mobile Menu Panel */}
+      {/* Mobile Menu Panel - Circular/Semi-circular Design */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            initial={{ x: '100%' }}
-            animate={{ x: 0 }}
-            exit={{ x: '100%' }}
-            transition={{ type: 'tween', duration: 0.3 }}
-            className="fixed top-20 right-0 bottom-0 w-64 bg-white/95 backdrop-blur-md shadow-2xl z-40 md:hidden"
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0, opacity: 0 }}
+            transition={{ type: 'spring', duration: 0.4 }}
+            className="fixed top-24 right-4 w-72 bg-white/95 backdrop-blur-xl shadow-2xl z-40 md:hidden rounded-3xl border-2 border-emerald-100"
           >
-            <div className="flex flex-col p-6 space-y-4">
+            <div className="flex flex-col p-6 space-y-3">
               {menuItems.map((item, index) => (
                 <motion.a
                   key={item.href}
@@ -119,12 +156,30 @@ export default function Navbar() {
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.3, delay: index * 0.05 }}
-                  whileHover={{ x: 10, color: '#10b981' }}
-                  className="text-gray-900 text-lg font-medium hover:text-emerald-600 transition-colors"
+                  whileHover={{ x: 5, backgroundColor: 'rgba(16, 185, 129, 0.1)' }}
+                  className="text-gray-900 text-base font-medium hover:text-emerald-600 transition-all px-4 py-2 rounded-2xl"
                 >
                   {item.label}
                 </motion.a>
               ))}
+              
+              {/* CTA Button Mobile - Experiencia 360 */}
+              <motion.a
+                href="#experiencia360"
+                onClick={handleLinkClick}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.4, delay: 0.4 }}
+                whileTap={{ scale: 0.95 }}
+                className="relative mt-2 px-6 py-3 bg-gradient-to-r from-emerald-500 to-green-600 text-white rounded-2xl font-bold text-center shadow-lg"
+              >
+                <span className="flex items-center justify-center gap-2 text-sm">
+                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8Z" />
+                  </svg>
+                  Tour Virtual 360°
+                </span>
+              </motion.a>
             </div>
           </motion.div>
         )}

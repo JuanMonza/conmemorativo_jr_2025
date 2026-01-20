@@ -13,8 +13,8 @@ export default function WhatsAppFloat() {
       transition={{ delay: 1, type: "spring", stiffness: 260, damping: 20 }}
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
-      className="fixed bottom-6 right-6 bg-green-500 text-white w-16 h-16 rounded-full flex items-center justify-center shadow-2xl hover:bg-green-600 transition-all duration-300 z-50"
-      style={{ boxShadow: '0 0 15px 5px rgba(34,197,94,0.7)' }}
+      className="fixed bottom-6 right-6 bg-green-500/90 backdrop-blur-xl text-white w-16 h-16 rounded-full flex items-center justify-center shadow-2xl hover:bg-green-600/90 transition-all duration-300 z-50 border border-white/30"
+      style={{ boxShadow: '0 0 20px 8px rgba(34,197,94,0.5)' }}
     >
       <motion.svg
         animate={{ scale: [1, 1.2, 1] }}

@@ -12,31 +12,39 @@ export default function Services() {
     {
       title: "Protocolo / Gala",
       icon: (
-        <svg className="w-12 h-12 text-yellow-600" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M5,16L3,5L8.5,10L12,4L15.5,10L21,5L19,16H5M19,19A1,1 0 0,1 18,20H6A1,1 0 0,1 5,19V18H19V19Z" />
+        <svg className="w-10 h-10 text-yellow-600" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2Z" stroke="currentColor" strokeWidth="0.5" strokeLinecap="round" strokeLinejoin="round"/>
+          <circle cx="12" cy="10" r="1.5" fill="currentColor"/>
         </svg>
       ),
       color: "yellow",
+      bgColor: "bg-yellow-100",
       items: ["Calle de Honor", "Acompañamiento musical", "Globos", "Pergamino", "Fotografía"]
     },
     {
       title: "Clásico",
       icon: (
-        <svg className="w-12 h-12 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M10,2H14A2,2 0 0,1 16,4V6H20A2,2 0 0,1 22,8V11H21V22H3V11H2V8A2,2 0 0,1 4,6H8V4A2,2 0 0,1 10,2M10,6H14V4H10V6M13,16V18H11V16H13M13,12V14H11V12H13Z" />
+        <svg className="w-10 h-10 text-blue-600" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v18M12 3c-1.5 0-2.5 1-2.5 2v3h5V5c0-1-1-2-2.5-2zM12 21c1.5 0 2.5-1 2.5-2v-3h-5v3c0 1 1 2 2.5 2zM5 12h14M5 12c0-1.5 1-2.5 2-2.5h3v5H7c-1 0-2-1-2-2.5zM19 12c0 1.5-1 2.5-2 2.5h-3v-5h3c1 0 2 1 2 2.5z"/>
+          <circle cx="12" cy="12" r="2" fill="currentColor"/>
         </svg>
       ),
       color: "blue",
+      bgColor: "bg-blue-100",
       description: "Ritual de acuerdo a la religión. Una ceremonia tradicional que honra las creencias y valores de tu ser querido"
     },
     {
       title: "Lúdico",
       icon: (
-        <svg className="w-12 h-12 text-purple-600" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M12,6A6,6 0 0,1 18,12A6,6 0 0,1 12,18A6,6 0 0,1 6,12A6,6 0 0,1 12,6M12,8A4,4 0 0,0 8,12A4,4 0 0,0 12,16A4,4 0 0,0 16,12A4,4 0 0,0 12,8Z" />
+        <svg className="w-10 h-10 text-purple-600" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="3" fill="currentColor"/>
+          <path strokeLinecap="round" d="M12 2v3M12 19v3M22 12h-3M5 12H2M19.07 4.93l-2.12 2.12M7.05 16.95l-2.12 2.12M19.07 19.07l-2.12-2.12M7.05 7.05L4.93 4.93"/>
+          <circle cx="12" cy="12" r="6" strokeDasharray="2 2" opacity="0.5"/>
+          <circle cx="12" cy="12" r="9" strokeDasharray="3 3" opacity="0.3"/>
         </svg>
       ),
       color: "purple",
+      bgColor: "bg-purple-100",
       items: ["Su vida contada en un video", "Juegos pirotécnicos", "Celebración de la vida"]
     }
   ];
@@ -52,7 +60,7 @@ export default function Services() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-6 title-underline title-shadow">
-            <span className="text-emerald-600">Servicios</span> Personalizados
+            <span className="text-emerald-600">Servicios</span> <span className="text-blue-600">Personalizados</span>
           </h2>
           <p className="text-xl text-gray-600">Despedida final con el toque especial que tu ser querido merece</p>
         </motion.div>
@@ -68,7 +76,9 @@ export default function Services() {
               className={`glass-card p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all border-t-4 border-${service.color}-500`}
             >
               <div className="text-center mb-6">
-                <div className="flex justify-center mb-4">{service.icon}</div>
+                <div className={`w-20 h-20 ${service.bgColor} rounded-full flex items-center justify-center mx-auto mb-4`}>
+                  {service.icon}
+                </div>
                 <h3 className="text-2xl font-bold text-gray-800 mb-2">{service.title}</h3>
               </div>
               {service.items ? (

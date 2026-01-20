@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
+import Image from 'next/image';
 
 export default function Benefits() {
   const ref = useRef(null);
@@ -63,41 +64,27 @@ export default function Benefits() {
             </div>
           </motion.div>
 
-          {/* Osarios */}
+          {/* Osarios - Reemplazado por imagen de Cenizarios */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
             transition={{ duration: 0.5, delay: 0.2 }}
             whileHover={{ scale: 1.02 }}
-            className="glass-card p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all"
-            style={{ background: 'linear-gradient(135deg, rgba(250, 245, 255, 0.7), rgba(252, 231, 243, 0.7))' }}
+            className="glass-card p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all overflow-hidden"
+            style={{ background: 'linear-gradient(135deg, rgba(250, 245, 255, 0.85), rgba(252, 231, 243, 0.85))' }}
           >
-            <div className="flex items-center mb-6">
-              <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mr-6">
-                <svg className="w-9 h-9 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
-                </svg>
-              </div>
-              <h3 className="text-3xl font-bold text-gray-800">Osarios</h3>
+            <h3 className="text-2xl font-bold text-gray-800 mb-6 text-center">Nuestros Cenizarios</h3>
+            <div className="relative w-full h-80 rounded-xl overflow-hidden shadow-lg">
+              <Image 
+                src="/img/cenizarios.jpg" 
+                alt="Cenizarios del Parque Conmemorativo" 
+                fill
+                className="object-cover"
+              />
             </div>
-            <p className="text-gray-700 mb-4 text-lg font-semibold">
-              Espacio individual que se adquiere a perpetuidad para inhumar restos, después de haber realizado una exhumación.
+            <p className="text-gray-700 mt-6 text-center text-lg">
+              Espacios diseñados con dignidad y respeto para preservar el recuerdo de tus seres queridos.
             </p>
-            <div className="space-y-4">
-              {[
-                "Dirigido especialmente a usuarios más tradicionales que valoran los espacios individuales",
-                "Valoran la conservación en el tiempo de manera permanente",
-                "Pueden ser espacios en altura exteriores o interiores",
-                "Se paga un valor adicional individual por cada ocupación"
-              ].map((item, index) => (
-                <div key={index} className="flex items-start">
-                  <svg className="w-6 h-6 text-purple-600 mr-3 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                  </svg>
-                  <p className="text-gray-600">{item}</p>
-                </div>
-              ))}
-            </div>
           </motion.div>
         </div>
 
@@ -111,7 +98,7 @@ export default function Benefits() {
             Permite que su esencia siga iluminando el mundo desde un lugar de calma y trascendencia.
           </p>
           <motion.a
-            href="https://wa.me/573228147191?text=Hola,%20me%20interesa%20conocer%20más%20sobre%20los%20cenizarios%20y%20osarios"
+            href="https://wa.me/573228147191?text=Hola,%20me%20interesa%20conocer%20más%20sobre%20los%20cenizarios"
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ scale: 1.05 }}

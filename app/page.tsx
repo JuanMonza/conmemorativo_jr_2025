@@ -8,6 +8,7 @@ import Gallery from '@/components/Gallery';
 import Alliances from '@/components/Alliances';
 import Workshops from '@/components/Workshops';
 import Experience360 from '@/components/Experience360';
+import QuoteForm from '@/components/QuoteForm';
 import Contact from '@/components/Contact';
 import Location from '@/components/Location';
 import Footer from '@/components/Footer';
@@ -16,7 +17,7 @@ import ScrollToTop from '@/components/ScrollToTop';
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen overflow-x-hidden">
       <Navbar />
       <Hero />
       <Introduction />
@@ -27,6 +28,7 @@ export default function Home() {
       <Alliances />
       <Workshops />
       <Experience360 />
+      <QuoteForm />
       <Contact />
       <Location />
       <Footer />
