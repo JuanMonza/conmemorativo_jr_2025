@@ -6,10 +6,17 @@ import { motion } from 'framer-motion';
 export default function Footer() {
   const links = [
     { href: "#inicio", label: "Inicio" },
+    { href: "#introduccion", label: "Un Espacio de Paz" },
+    { href: "#proposito", label: "Nuestro Propósito" },
     { href: "#beneficios", label: "Beneficios" },
     { href: "#servicios", label: "Servicios" },
+    { href: "#galeria", label: "Galería" },
     { href: "#alianzas", label: "Alianzas" },
-    { href: "#talleres", label: "Talleres de Duelo" }
+    { href: "#talleres", label: "Talleres de Duelo" },
+    { href: "#experiencia-360", label: "Experiencia 360°" },
+    { href: "#cotizacion", label: "Cotización" },
+    { href: "#contacto", label: "Contacto" },
+    { href: "#ubicacion", label: "Ubicación" }
   ];
 
   const socials = [
@@ -51,34 +58,35 @@ export default function Footer() {
             <p className="text-gray-300 text-sm leading-relaxed">
               Un descanso eterno con significado, armonía y amor. Cenizarios y osarios en Cartago.
             </p>
+            
+            {/* Botón Experiencia 360 */}
+            <motion.a
+              href="#experiencia-360"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="inline-flex items-center gap-2 mt-4 px-5 py-2.5 bg-gradient-to-r from-emerald-500 to-green-600 text-white rounded-full font-bold text-sm shadow-lg hover:shadow-xl transition-all"
+            >
+              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8Z" />
+              </svg>
+              Tour Virtual 360°
+            </motion.a>
           </div>
 
-          <div>
+          <div className="md:col-span-2">
             <h4 className="text-lg font-semibold mb-4">Enlaces Rápidos</h4>
-            <ul className="space-y-2 text-sm">
+            <div className="grid grid-cols-2 gap-x-8 gap-y-2">
               {links.map((link, index) => (
-                <li key={index}>
-                  <motion.a
-                    href={link.href}
-                    whileHover={{ x: 5, color: '#10b981' }}
-                    className="text-gray-300 hover:text-green-400 transition-colors"
-                  >
-                    {link.label}
-                  </motion.a>
-                </li>
+                <motion.a
+                  key={index}
+                  href={link.href}
+                  whileHover={{ x: 5, color: '#10b981' }}
+                  className="text-gray-300 hover:text-green-400 transition-colors text-sm"
+                >
+                  {link.label}
+                </motion.a>
               ))}
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="text-lg font-semibold mb-4">Nuestros Servicios</h4>
-            <ul className="space-y-2 text-sm text-gray-300">
-              <li>Cenizarios y Osarios</li>
-              <li>Protocolo / Gala</li>
-              <li>Ceremonias Clásicas</li>
-              <li>Servicios Lúdicos</li>
-              <li>Talleres de Duelo</li>
-            </ul>
+            </div>
           </div>
 
           <div>
@@ -86,8 +94,20 @@ export default function Footer() {
             <div className="space-y-2 text-sm text-gray-300">
               <p>Cartago, Valle del Cauca</p>
               <p>Km 2.5 vía Zaragoza</p>
-              <p>322 814 7191</p>
-              <p>redes.parqueconm@jardinesdelrenacer.co</p>
+              <motion.a
+                href="tel:+573228147191"
+                whileHover={{ color: '#10b981' }}
+                className="block hover:text-green-400 transition-colors"
+              >
+                322 814 7191
+              </motion.a>
+              <motion.a
+                href="mailto:redes.parqueconm@jardinesdelrenacer.co"
+                whileHover={{ color: '#10b981' }}
+                className="block hover:text-green-400 transition-colors break-all"
+              >
+                redes.parqueconm@jardinesdelrenacer.co
+              </motion.a>
             </div>
             <div className="mt-4 flex space-x-3">
               {socials.map((social, index) => (

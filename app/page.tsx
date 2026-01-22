@@ -14,6 +14,7 @@ import Location from '@/components/Location';
 import Footer from '@/components/Footer';
 import WhatsAppFloat from '@/components/WhatsAppFloat';
 import ScrollToTop from '@/components/ScrollToTop';
+import PromoPopup from '@/components/PromoPopup';
 
 export default function Home() {
   return (
@@ -34,6 +35,7 @@ export default function Home() {
       <Footer />
       <WhatsAppFloat />
       <ScrollToTop />
+      <PromoPopup />
     </main>
   );
 }

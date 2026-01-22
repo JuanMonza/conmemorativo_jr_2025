@@ -1,13 +1,44 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import Image from 'next/image';
 
 export default function Benefits() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [currentImage, setCurrentImage] = useState(0);
+  
+  const images = [
+    {
+      src: '/img/cenizarios.jpg',
+      alt: 'Cenizarios del Parque Conmemorativo'
+    },
+    {
+      src: '/img/parquecomn.jpg',
+      alt: 'Vista del Parque'
+    },
+    {
+      src: '/img/panorama-del-parque-de-la-ciudad-de-un-hermoso-parque.webp',
+      alt: 'Panorama del Parque'
+    }
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentImage((prev) => (prev + 1) % images.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const nextImage = () => {
+    setCurrentImage((prev) => (prev + 1) % images.length);
+  };
+
+  const prevImage = () => {
+    setCurrentImage((prev) => (prev - 1 + images.length) % images.length);
+  };
 
   return (
     <section id="beneficios" className="py-20 bg-white">
@@ -45,13 +76,12 @@ export default function Benefits() {
               <h3 className="text-3xl font-bold text-gray-800">Cenizarios</h3>
             </div>
             <p className="text-gray-700 mb-4 text-lg font-semibold">
-              Espacios individuales o grupales que se adquieren a perpetuidad o temporalidad para la custodia de cenizas.
+              Espacios individuales o grupales que se adquieren a comodato para la custodia de cenizas.
             </p>
             <div className="space-y-4">
               {[
                 "Dirigido especialmente a usuarios más tradicionales que valoran la conservación en el tiempo",
                 "Pueden ser espacios en altura exteriores o interiores",
-                "Para espacios interiores, el cenizario puede convertirse en una biblioteca con libros-urnas que conservan las cenizas familiares",
                 "Se paga un valor adicional individual por cada ocupación"
               ].map((item, index) => (
                 <div key={index} className="flex items-start">
@@ -64,7 +94,7 @@ export default function Benefits() {
             </div>
           </motion.div>
 
-          {/* Osarios - Reemplazado por imagen de Cenizarios */}
+          {/* Osarios - Reemplazado por carrusel de Cenizarios */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
@@ -75,12 +105,60 @@ export default function Benefits() {
           >
             <h3 className="text-2xl font-bold text-gray-800 mb-6 text-center">Nuestros Cenizarios</h3>
             <div className="relative w-full h-80 rounded-xl overflow-hidden shadow-lg">
-              <Image 
-                src="/img/cenizarios.jpg" 
-                alt="Cenizarios del Parque Conmemorativo" 
-                fill
-                className="object-cover"
-              />
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentImage}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.8, ease: "easeInOut" }}
+                  className="absolute inset-0"
+                >
+                  <Image 
+                    src={images[currentImage].src}
+                    alt={images[currentImage].alt}
+                    fill
+                    className="object-cover"
+                  />
+                </motion.div>
+              </AnimatePresence>
+
+              {/* Botones de navegación */}
+              <button
+                onClick={prevImage}
+                className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white backdrop-blur-md text-gray-800 w-10 h-10 rounded-full flex items-center justify-center shadow-lg transition-all hover:scale-110 z-10"
+                aria-label="Imagen anterior"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+              
+              <button
+                onClick={nextImage}
+                className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white backdrop-blur-md text-gray-800 w-10 h-10 rounded-full flex items-center justify-center shadow-lg transition-all hover:scale-110 z-10"
+                aria-label="Siguiente imagen"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+
+              {/* Indicadores */}
+              <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+                {images.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentImage(index)}
+                    className={`w-2 h-2 rounded-full transition-all ${
+                      index === currentImage 
+                        ? 'bg-white w-6' 
+                        : 'bg-white/50 hover:bg-white/75'
+                    }`}
+                    aria-label={`Ver imagen ${index + 1}`}
+                  />
+                ))}
+              </div>
             </div>
             <p className="text-gray-700 mt-6 text-center text-lg">
               Espacios diseñados con dignidad y respeto para preservar el recuerdo de tus seres queridos.

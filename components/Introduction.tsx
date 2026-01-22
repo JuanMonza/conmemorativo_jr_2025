@@ -53,7 +53,7 @@ export default function Introduction() {
         </svg>
       ),
       title: "Más Accesible",
-      description: "Evita los altos costos de un entierro tradicional sin sacrificar dignidad",
+      description: "Evita los altos costos de un servicio funerario",
       color: "blue",
       bgColor: "bg-blue-100"
     }
@@ -116,7 +116,7 @@ export default function Introduction() {
           </p>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
             En nuestros cenizarios, las cenizas descansan en un entorno lleno de energía, serenidad y belleza natural, 
-            donde cada flor y cada suspiro del viento se convierten en un homenaje a la vida.
+            donde cada flor y cada suspiro del viento se convierten en una memoria a la vida.
           </p>
         </motion.div>
       </div>

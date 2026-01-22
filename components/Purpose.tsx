@@ -26,13 +26,13 @@ export default function Purpose() {
               cuidadosamente diseñado para ofrecer serenidad y belleza.
             </p>
             <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-              Nuestros jardines temáticos, senderos meditativos y espacios de contemplación brindan diferentes 
+              Nuestros jardines especializados, senderos meditativos y espacios de contemplación brindan diferentes 
               formas de honrar la memoria y encontrar sanación en un entorno natural excepcional.
             </p>
             <div className="space-y-4">
               {[
-                "Jardines temáticos especializados",
-                "Senderos meditativos y contemplativos",
+                "Jardines especializados",
+                "Contamos con un lugar cómodo y solemne en memoria de nuestros seres queridos",
                 "Espacios para ceremonias y recordación"
               ].map((item, index) => (
                 <motion.div

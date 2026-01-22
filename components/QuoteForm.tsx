@@ -34,16 +34,20 @@ export default function QuoteForm() {
     e.preventDefault();
     
     // Crear mensaje profesional para WhatsApp
-    const mensaje = `¡HOLA! Me gustaría recibir una cotización personalizada.
+    const mensaje = `🌿 *PARQUE CONMEMORATIVO JARDINES DEL RENACER* 🌿
 
-*MIS DATOS:*
+Hola, me gustaría recibir una cotización personalizada.
+
+📋 *MIS DATOS:*
 • Nombre: ${formData.nombre} ${formData.apellido}
 • Celular: ${formData.celular}
 • Programa de interés: ${formData.programa}
 
-Me interesa conocer más sobre este servicio del Parque Conmemorativo Jardines del Renacer. ¿Podrían brindarme información detallada sobre precios, opciones de pago y beneficios?
+Me interesa conocer más sobre este servicio. ¿Podrían brindarme información detallada sobre precios, opciones de pago y beneficios?
 
-¡Quedo atento a su respuesta!`;
+¡Quedo atento a su respuesta!
+
+_Solicitud enviada desde: www.parqueconmemorativo.jardinesdelrenacer.co_`;
 
     const whatsappURL = `https://wa.me/573228147191?text=${encodeURIComponent(mensaje)}`;
     

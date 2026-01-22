@@ -3,9 +3,11 @@
 import { motion } from 'framer-motion';
 
 export default function WhatsAppFloat() {
+  const mensaje = encodeURIComponent("🌿 *PARQUE CONMEMORATIVO JARDINES DEL RENACER* 🌿\n\nHola, estoy interesado en conocer más información sobre sus servicios y programas disponibles.\n\n_Solicitud enviada desde: www.parqueconmemorativo.jardinesdelrenacer.co_");
+  
   return (
     <motion.a
-      href="https://wa.me/573228147191?text=Hola,%20necesito%20información"
+      href={`https://wa.me/573228147191?text=${mensaje}`}
       target="_blank"
       rel="noopener noreferrer"
       initial={{ scale: 0 }}
