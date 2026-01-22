@@ -12,15 +12,15 @@ export default function Benefits() {
   
   const images = [
     {
-      src: '/img/cenizarios.jpg',
+      src: '/img/img_1_26.webp',
       alt: 'Cenizarios del Parque Conmemorativo'
     },
     {
-      src: '/img/parquecomn.jpg',
+      src: '/img/img_1_15.webp',
       alt: 'Vista del Parque'
     },
     {
-      src: '/img/panorama-del-parque-de-la-ciudad-de-un-hermoso-parque.webp',
+      src: '/img/img_1_12.webp',
       alt: 'Panorama del Parque'
     }
   ];

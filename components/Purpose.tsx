@@ -57,7 +57,7 @@ export default function Purpose() {
             className="relative h-96 rounded-2xl overflow-hidden shadow-2xl border-4 border-white/50 backdrop-blur-sm"
           >
             <Image
-              src="/img/panorama-del-parque-de-la-ciudad-de-un-hermoso-parque.webp"
+              src="/img/img_1_19.webp"
               alt="Panorama del Parque - Nuestro Propósito"
               fill
               className="object-cover"

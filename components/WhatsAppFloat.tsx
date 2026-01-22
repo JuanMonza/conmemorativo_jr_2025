@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 
 export default function WhatsAppFloat() {
-  const mensaje = encodeURIComponent("🌿 *PARQUE CONMEMORATIVO JARDINES DEL RENACER* 🌿\n\nHola, estoy interesado en conocer más información sobre sus servicios y programas disponibles.\n\n_Solicitud enviada desde: www.parqueconmemorativo.jardinesdelrenacer.co_");
+  const mensaje = encodeURIComponent("*PARQUE CONMEMORATIVO JARDINES DEL RENACER*\n\nHola, estoy interesado en conocer más información sobre sus servicios y programas disponibles.\n\n_Solicitud enviada desde: www.parqueconmemorativo.jardinesdelrenacer.co_");
   
   return (
     <motion.a

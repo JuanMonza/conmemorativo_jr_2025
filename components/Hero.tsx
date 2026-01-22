@@ -8,10 +8,13 @@ export default function Hero() {
   const [currentImage, setCurrentImage] = useState(0);
   
   const images = [
-    '/img/parquecomn.jpg',
-    '/img/panorama-del-parque-de-la-ciudad-de-un-hermoso-parque.webp',
-    '/img/parque-con-un-camino-de-madera-y-bancos.webp',
-    '/img/pathway-3596034_1280.webp'
+    '/img/img_1_1.webp',
+    '/img/img_1_20.webp',
+    '/img/img_1_12.webp',
+    '/img/img_1_17.webp',
+    '/img/img_1_20.webp',
+    '/img/img_1_21.webp',
+    '/img/img_1_26.webp',
   ];
 
   useEffect(() => {

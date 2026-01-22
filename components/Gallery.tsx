@@ -11,12 +11,12 @@ export default function Gallery() {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const images = [
-    { src: "/img/letreo.jpg", alt: "Vista del parque 1" },
-    { src: "/img/cenizarios.jpg", alt: "Vista del parque 2" },
-    { src: "/img/panorama-del-parque-de-la-ciudad-de-un-hermoso-parque.webp", alt: "Vista del parque 3" },
-    { src: "/img/parque-con-un-camino-de-madera-y-bancos.webp", alt: "Vista del parque 4" },
-    { src: "/img/pathway-3596034_1280.webp", alt: "Vista del parque 5" },
-    { src: "/img/autumn-3731094_1280.jpg", alt: "Vista del parque 6" },
+    { src: "/img/img_1_1.webp", alt: "Vista aérea del parque" },
+    { src: "/img/img_1_10.webp", alt: "Zona verde y jardines" },
+    { src: "/img/img_1_12.webp", alt: "Caminos y senderos" },
+    { src: "/img/img_1_17.webp", alt: "Árboles y naturaleza" },
+    { src: "/img/img_1_20.webp", alt: "Vista panorámica" },
+    { src: "/img/img_1_21.webp", alt: "Espacios de contemplación" },
   ];
 
   const nextImage = () => {
