@@ -62,7 +62,8 @@ export default function Workshops() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 title-underline title-shadow">
+          {/* CAMBIO AQUÍ: Eliminé 'title-underline' y 'title-shadow' */}
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">
             Talleres de <span className="text-emerald-600">Duelo</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">Acompañamiento profesional en tu proceso de sanación</p>
@@ -77,26 +78,8 @@ export default function Workshops() {
           >
             {/* Corazón de fondo */}
             <svg className="absolute w-full h-full max-w-md max-h-md" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
-              <defs>
-                <linearGradient id="heartGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" style={{ stopColor: 'rgb(219, 234, 254)', stopOpacity: 0.95 }} />
-                  <stop offset="100%" style={{ stopColor: 'rgb(191, 219, 254)', stopOpacity: 0.95 }} />
-                </linearGradient>
-                <filter id="heartShadow">
-                  <feGaussianBlur in="SourceAlpha" stdDeviation="2"/>
-                  <feOffset dx="0" dy="3" result="offsetblur"/>
-                  <feComponentTransfer>
-                    <feFuncA type="linear" slope="0.15"/>
-                  </feComponentTransfer>
-                  <feMerge>
-                    <feMergeNode/>
-                    <feMergeNode in="SourceGraphic"/>
-                  </feMerge>
-                </filter>
-              </defs>
               <path d="M50,85 C50,85 15,60 15,40 C15,25 25,15 35,15 C42,15 48,20 50,25 C52,20 58,15 65,15 C75,15 85,25 85,40 C85,60 50,85 50,85 Z" 
-                    fill="url(#heartGradient)"
-                    filter="url(#heartShadow)" />
+                    fill="#dbeafe" />
             </svg>
             
             {/* Contenido sobre el corazón */}
