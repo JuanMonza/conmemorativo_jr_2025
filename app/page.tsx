@@ -8,6 +8,8 @@ import Gallery from '@/components/Gallery';
 import Alliances from '@/components/Alliances';
 import Workshops from '@/components/Workshops';
 import Experience360 from '@/components/Experience360';
+import LifeConnection from '@/components/LifeConnection';
+import CorporateExperience from '@/components/CorporateExperience';
 import QuoteForm from '@/components/QuoteForm';
 import Contact from '@/components/Contact';
 import Location from '@/components/Location';
@@ -29,6 +31,8 @@ export default function Home() {
       <Alliances />
       <Workshops />
       <Experience360 />
+      <LifeConnection />
+      <CorporateExperience />
       <QuoteForm />
       <Contact />
       <Location />

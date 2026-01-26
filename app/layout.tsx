@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import FloatingQuoteReminder from "@/components/FloatingQuoteReminder";
+import Analytics from "@/components/Analytics";
 
 export const metadata: Metadata = {
   title: "Jardines de Renacer - Cenizarios y Osarios en Cartago",
@@ -29,7 +31,9 @@ export default function RootLayout({
   return (
     <html lang="es" className="overflow-x-hidden">
       <body className="overflow-x-hidden">
+        <Analytics />
         {children}
+        <FloatingQuoteReminder />
       </body>
     </html>
   );

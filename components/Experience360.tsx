@@ -21,9 +21,12 @@ export default function Experience360() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Experiencia Virtual <span className="text-emerald-600">360°</span></h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Vive la experiencia de la Comunidad Togar con una experiencia inmersiva en 360°
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Recorre Nuestro Parque <span className="text-emerald-600">Virtualmente</span></h2>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-4">
+            Explora cada rincón de Jardines de Renacer desde casa. Una experiencia inmersiva en 360° que te permite conocer nuestros espacios con confianza y tranquilidad antes de visitarnos.
+          </p>
+          <p className="text-lg text-emerald-600 font-semibold">
+            ✓ Diferencial: Transparencia total en tu decisión
           </p>
         </motion.div>
 

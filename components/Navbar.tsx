@@ -79,7 +79,7 @@ export default function Navbar() {
               
               {/* CTA Button - Experiencia 360 */}
               <motion.a
-                href="#experiencia360"
+                href="#experiencia-360"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ 

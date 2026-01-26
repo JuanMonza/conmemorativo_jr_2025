@@ -14,12 +14,13 @@ export default function Services() {
       icon: (
         <svg className="w-10 h-10 text-yellow-600" fill="currentColor" viewBox="0 0 24 24">
           <path d="M12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2Z" stroke="currentColor" strokeWidth="0.5" strokeLinecap="round" strokeLinejoin="round"/>
-          <circle cx="12" cy="10" r="1.5" fill="currentColor"/>
         </svg>
       ),
+      benefit: "Ceremonia de Honor",
+      description: "Despedida ceremonial con elegancia, música y tributo especial",
+      items: ["Calle de Honor", "Acompañamiento musical", "Globos biodegradables", "Pergamino personalizado", "Fotografía profesional"],
       color: "yellow",
-      bgColor: "bg-yellow-100",
-      items: ["Calle de Honor", "Acompañamiento musical", "Globos", "Pergamino", "Fotografía"]
+      bgColor: "bg-yellow-100"
     },
     {
       title: "Clásico",
@@ -29,23 +30,24 @@ export default function Services() {
           <circle cx="12" cy="12" r="2" fill="currentColor"/>
         </svg>
       ),
+      benefit: "Ritual Significativo",
+      description: "Ceremonia tradicional que honra creencias y valores personales",
+      items: ["Ritual personalizado", "Acompañamiento espiritual", "Música seleccionada", "Flores naturales", "Espacio privado"],
       color: "blue",
-      bgColor: "bg-blue-100",
-      description: "Ritual de acuerdo a la religión. Una ceremonia tradicional que honra las creencias y valores de tu ser querido"
+      bgColor: "bg-blue-100"
     },
     {
-      title: "Lúdico",
+      title: "Celebración de Vida",
       icon: (
         <svg className="w-10 h-10 text-purple-600" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-          <circle cx="12" cy="12" r="3" fill="currentColor"/>
-          <path strokeLinecap="round" d="M12 2v3M12 19v3M22 12h-3M5 12H2M19.07 4.93l-2.12 2.12M7.05 16.95l-2.12 2.12M19.07 19.07l-2.12-2.12M7.05 7.05L4.93 4.93"/>
-          <circle cx="12" cy="12" r="6" strokeDasharray="2 2" opacity="0.5"/>
-          <circle cx="12" cy="12" r="9" strokeDasharray="3 3" opacity="0.3"/>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
       ),
+      benefit: "Fiesta de Memoria",
+      description: "Celebración llena de vida, colores y recuerdos que honran su legado",
+      items: ["Video de vida", "Proyección de recuerdos", "Música festiva", "Espacio colaborativo", "Ceremonia personalizada"],
       color: "purple",
-      bgColor: "bg-purple-100",
-      items: ["Su vida contada en un video", "Juegos pirotécnicos", "Celebración de la vida"]
+      bgColor: "bg-purple-100"
     }
   ];
 
@@ -59,10 +61,13 @@ export default function Services() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 title-underline title-shadow">
-            <span className="text-emerald-600">Servicios</span> <span className="text-blue-600">Personalizados</span>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            Honra su Memoria con <span className="text-emerald-600">Experiencias Significativas</span>
           </h2>
-          <p className="text-xl text-gray-600">Despedida final con el toque especial que tu ser querido merece</p>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            Cada servicio está diseñado para celebrar la vida y la trascendencia de quienes amas. 
+            Elige la experiencia que mejor represente su legado.
+          </p>
         </motion.div>
 
         <div className="grid md:grid-cols-3 gap-8">
@@ -71,49 +76,64 @@ export default function Services() {
               key={index}
               initial={{ opacity: 0, y: 50 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-              transition={{ duration: 0.5, delay: index * 0.2 }}
+              transition={{ duration: 0.5, delay: index * 0.15 }}
               whileHover={{ y: -10, scale: 1.02 }}
-              className={`glass-card p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all border-t-4 border-${service.color}-500`}
+              className="bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all border-2 border-gray-100"
             >
-              <div className="text-center mb-6">
-                <div className={`w-20 h-20 ${service.bgColor} rounded-full flex items-center justify-center mx-auto mb-4`}>
+              {/* Encabezado con color */}
+              <div className={`${service.bgColor} p-6 text-center border-b-4 border-${service.color}-400`}>
+                <div className={`w-16 h-16 bg-white/30 rounded-full flex items-center justify-center mx-auto mb-3`}>
                   {service.icon}
                 </div>
-                <h3 className="text-2xl font-bold text-gray-800 mb-2">{service.title}</h3>
+                <h3 className="text-2xl font-bold text-gray-800">{service.title}</h3>
+                <p className="text-sm font-semibold text-emerald-600 mt-2">
+                  ✓ {service.benefit}
+                </p>
               </div>
-              {service.items ? (
-                <ul className="space-y-3 text-gray-700">
+
+              {/* Contenido */}
+              <div className="p-6">
+                <p className="text-gray-700 text-sm mb-6 italic">
+                  "{service.description}"
+                </p>
+
+                {/* Lista de beneficios */}
+                <ul className="space-y-3 mb-6">
                   {service.items.map((item, i) => (
-                    <li key={i} className="flex items-start">
-                      <span className={`text-${service.color}-500 mr-2`}>▸</span>
-                      <span>{item}</span>
+                    <li key={i} className="flex items-start gap-3">
+                      <span className="text-emerald-600 font-bold text-xl">•</span>
+                      <span className="text-gray-700 text-sm">{item}</span>
                     </li>
                   ))}
                 </ul>
-              ) : (
-                <p className="text-gray-700">{service.description}</p>
-              )}
+
+                {/* Botones de acción */}
+                <div className="space-y-3">
+                  <motion.a
+                    href={`https://wa.me/573228147191?text=Hola,%20deseo%20cotizar%20el%20servicio%20de%20${service.title}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="block w-full bg-emerald-600 text-white py-3 rounded-lg font-bold hover:bg-emerald-700 transition-all text-center shadow-md"
+                  >
+                    Cotizar
+                  </motion.a>
+                  <motion.a
+                    href={`https://wa.me/573228147191?text=Hola,%20deseo%20más%20información%20sobre%20el%20servicio%20${service.title}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="block w-full border-2 border-gray-300 text-gray-700 py-2 rounded-lg font-semibold hover:bg-gray-50 transition-all text-center"
+                  >
+                    Solicitar Asesor
+                  </motion.a>
+                </div>
+              </div>
             </motion.div>
           ))}
         </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="text-center mt-12"
-        >
-          <motion.a
-            href="https://wa.me/573228147191?text=Hola,%20deseo%20información%20sobre%20servicios%20personalizados"
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="inline-block bg-blue-600 text-white px-8 py-4 rounded-full font-semibold hover:bg-blue-700 transition-all duration-300 shadow-lg"
-          >
-            Consultar Servicios
-          </motion.a>
-        </motion.div>
       </div>
     </section>
   );

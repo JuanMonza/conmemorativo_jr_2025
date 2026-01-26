@@ -109,7 +109,7 @@ export default function Hero() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="text-4xl sm:text-5xl md:text-7xl font-bold mb-6"
         >
-          Un descanso eterno con significado, armonía y amor
+          Honra la memoria con dignidad, vida y conmemoración
         </motion.h1>
 
         <motion.p
@@ -118,7 +118,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
           className="text-xl md:text-2xl mb-8 opacity-90"
         >
-          Elige un cenizario: una forma más humana, sostenible y serena de honrar la memoria de quienes amas
+          Elige un cenizario: una forma más humana, sostenible y serena para recordar a quienes amas
         </motion.p>
 
         <motion.div
@@ -128,23 +128,23 @@ export default function Hero() {
           className="flex flex-col xs:flex-row gap-4 justify-center"
         >
           <motion.a
-            href="#beneficios"
+            href="#cotizador"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="inline-block bg-white text-gray-800 px-8 py-4 rounded-full font-semibold transition-all duration-300 shadow-lg hover:shadow-xl"
+            className="inline-block bg-white text-emerald-700 px-8 py-4 rounded-full font-bold transition-all duration-300 shadow-lg hover:shadow-2xl hover:bg-emerald-50 text-lg"
           >
-            Descubre Nuestros Cenizarios
+            Cotiza tu cenizario ahora
           </motion.a>
 
           <motion.a
-            href="https://wa.me/573228147191?text=Hola,%20estoy%20interesado%20en%20conocer%20más%20sobre%20el%20Parque%20Conmemorativo%20Jardines%20del%20Renacer"
+            href="https://wa.me/573228147191?text=Hola,%20deseo%20información%20inmediata%20sobre%20los%20cenizarios%20del%20Parque%20Conmemorativo%20Jardines%20del%20Renacer"
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="inline-block bg-green-500 text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 shadow-lg hover:shadow-xl hover:bg-green-600"
           >
-            Quiero más información
+            Solicita información inmediata
           </motion.a>
         </motion.div>
         </motion.div>

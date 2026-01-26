@@ -70,12 +70,12 @@ export default function Introduction() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-6 title-underline title-shadow">
-            <span className="text-emerald-600">Un espacio de paz</span> para recordar con amor
+            <span className="text-emerald-600">Un espacio de paz</span> para honrar vidas
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Cuando despedimos a alguien que amamos, buscamos más que un lugar: queremos un espacio lleno de paz, 
-            belleza y recuerdo. Un cenizario ofrece justo eso: un entorno diseñado para conservar las cenizas con 
-            respeto, armonía y conexión con la naturaleza.
+            belleza y memoria. Los cenizarios ofrecen justo eso: un entorno diseñado para preservar las cenizas con 
+            dignidad, armonía y conexión con la naturaleza, creando un legado duradero que honra su vida.
           </p>
         </motion.div>
 

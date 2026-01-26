@@ -41,11 +41,11 @@ export default function PromoPopup() {
             transition={{ duration: 0.3, ease: "easeOut" }}
             className="fixed inset-0 z-50 flex items-center justify-center p-4"
           >
-            <div className="relative bg-white rounded-3xl shadow-2xl max-w-2xl w-full overflow-hidden">
+            <div className="relative bg-white/90 backdrop-blur-xl rounded-3xl shadow-2xl max-w-2xl w-full overflow-hidden border border-white/50">
               {/* Botón cerrar */}
               <button
                 onClick={closePopup}
-                className="absolute top-4 right-4 z-10 bg-white/90 hover:bg-white text-gray-800 w-10 h-10 rounded-full flex items-center justify-center shadow-lg transition-all hover:scale-110"
+                className="absolute top-4 right-4 z-10 bg-white/60 hover:bg-white/80 text-gray-800 w-10 h-10 rounded-full flex items-center justify-center shadow-lg transition-all hover:scale-110 backdrop-blur-md border border-white/50"
                 aria-label="Cerrar"
               >
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -75,7 +75,7 @@ export default function PromoPopup() {
                   Aprovecha nuestra promoción exclusiva en <span className="text-emerald-600 font-bold">Cenizarios</span>
                 </p>
 
-                <div className="bg-gradient-to-r from-emerald-50 to-blue-50 rounded-2xl p-6 mb-8">
+                <div className="bg-gradient-to-r from-emerald-500/20 to-blue-500/20 rounded-2xl p-6 mb-8 border border-white/20 backdrop-blur-md">
                   <p className="text-2xl font-bold text-emerald-600 mb-2">
                     20% de Descuento
                   </p>
@@ -92,7 +92,7 @@ export default function PromoPopup() {
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="bg-green-500 text-white px-8 py-4 rounded-full font-semibold hover:bg-green-600 transition-all duration-300 shadow-lg"
+                    className="bg-green-500/90 backdrop-blur-md border border-white/50 text-white px-8 py-4 rounded-full font-semibold hover:bg-green-600 transition-all duration-300 shadow-lg hover:shadow-xl"
                   >
                     Contactar por WhatsApp
                   </motion.a>
@@ -101,7 +101,7 @@ export default function PromoPopup() {
                     onClick={closePopup}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="bg-gray-200 text-gray-800 px-8 py-4 rounded-full font-semibold hover:bg-gray-300 transition-all duration-300"
+                    className="bg-gray-100/80 backdrop-blur-md border border-gray-300/50 text-gray-800 px-8 py-4 rounded-full font-semibold hover:bg-gray-200/80 transition-all duration-300"
                   >
                     Ver más tarde
                   </motion.button>
