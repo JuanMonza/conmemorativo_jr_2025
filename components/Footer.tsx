@@ -13,7 +13,7 @@ export default function Footer() {
     { href: "#galeria", label: "Galería" },
     { href: "#alianzas", label: "Alianzas" },
     { href: "#talleres", label: "Talleres de Duelo" },
-    { href: "#arbol-3d", label: "Árbol 3D" },
+    // { href: "#arbol-3d", label: "Árbol 3D" }, // Eliminado según solicitud
     { href: "#experiencia-360", label: "Experiencia 360°" },
     { href: "#cotizacion", label: "Cotización" },
     { href: "#contacto", label: "Contacto" },
@@ -60,18 +60,33 @@ export default function Footer() {
               Un descanso eterno con significado, armonía y amor. Cenizarios y osarios en Cartago.
             </p>
             
-            {/* Botón Experiencia 360 */}
-            <motion.a
-              href="#experiencia-360"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center gap-2 mt-4 px-5 py-2.5 bg-gradient-to-r from-emerald-500 to-green-600 text-white rounded-full font-bold text-sm shadow-lg hover:shadow-xl transition-all"
-            >
-              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8Z" />
-              </svg>
-              Tour Virtual 360°
-            </motion.a>
+            {/* Botones de acción */}
+            <div className="flex flex-col gap-3 mt-4">
+              {/* Botón Árbol */}
+              <motion.a
+                href="#arbol-3d"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-emerald-400 to-green-500 text-white rounded-full font-bold text-sm shadow-lg hover:shadow-xl transition-all"
+              >
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2C10.07 2 8.5 3.57 8.5 5.5c0 .96.39 1.82 1.02 2.45C7.01 8.36 5 10.92 5 14c0 2.76 2.24 5 5 5h4c2.76 0 5-2.24 5-5 0-3.08-2.01-5.64-4.52-6.05A3.495 3.495 0 0 0 15.5 5.5C15.5 3.57 13.93 2 12 2zm0 2c.83 0 1.5.67 1.5 1.5S12.83 7 12 7s-1.5-.67-1.5-1.5S11.17 4 12 4zm2 13h-4c-1.65 0-3-1.35-3-3 0-2.22 1.79-4.03 4-4.03s4 1.81 4 4.03c0 1.65-1.35 3-3 3z" />
+                </svg>
+                Árbol
+              </motion.a>
+              {/* Botón Experiencia 360 */}
+              <motion.a
+                href="#experiencia-360"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-emerald-500 to-green-600 text-white rounded-full font-bold text-sm shadow-lg hover:shadow-xl transition-all"
+              >
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8Z" />
+                </svg>
+                Tour Virtual 360°
+              </motion.a>
+            </div>
           </div>
 
           <div className="md:col-span-2">
