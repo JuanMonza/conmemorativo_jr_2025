@@ -256,23 +256,41 @@ export default function Navbar() {
                 )
               ))}
               
-              {/* CTA Button Mobile - Experiencia 360 */}
-              <motion.a
-                href="#experiencia360"
-                onClick={handleLinkClick}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.4, delay: 0.4 }}
-                whileTap={{ scale: 0.95 }}
-                className="relative mt-2 px-6 py-3 bg-gradient-to-r from-emerald-500 to-green-600 text-white rounded-2xl font-bold text-center shadow-lg"
-              >
-                <span className="flex items-center justify-center gap-2 text-sm">
-                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8Z" />
-                  </svg>
-                  Tour Virtual 360°
-                </span>
-              </motion.a>
+              {/* CTA Button Mobile - Experiencia 360 y Árbol 3D */}
+              <div className="flex flex-col gap-2 mt-2">
+                <motion.a
+                  href="#experiencia-360"
+                  onClick={handleLinkClick}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.4, delay: 0.4 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="relative px-6 py-3 bg-gradient-to-r from-emerald-500 to-green-600 text-white rounded-2xl font-bold text-center shadow-lg"
+                >
+                  <span className="flex items-center justify-center gap-2 text-sm">
+                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8Z" />
+                    </svg>
+                    Tour Virtual 360°
+                  </span>
+                </motion.a>
+                <motion.a
+                  href="#arbol-3d"
+                  onClick={handleLinkClick}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.4, delay: 0.5 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="relative px-6 py-3 bg-gradient-to-r from-emerald-500 to-green-600 text-white rounded-2xl font-bold text-center shadow-lg"
+                >
+                  <span className="flex items-center justify-center gap-2 text-sm">
+                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12 2C7.03 2 3 6.03 3 11c0 4.97 4.03 9 9 9s9-4.03 9-9c0-4.97-4.03-9-9-9zm0 16c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7zm-1-7V7h2v4h3v2h-5z" />
+                    </svg>
+                    Árbol 3D
+                  </span>
+                </motion.a>
+              </div>
             </div>
           </motion.div>
         )}
