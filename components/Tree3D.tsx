@@ -406,24 +406,6 @@ export default function Tree3D() {
           viewport={{ once: true }}
           className="relative"
         >
-          {/* Botón de música estilo glass */}
-          <button
-            onClick={toggleMusic}
-            className="absolute top-6 right-6 z-20 backdrop-blur-md bg-white/30 border border-white/40 rounded-full shadow-lg p-4 flex items-center justify-center transition hover:bg-white/50"
-            aria-label={isPlaying ? "Pausar música" : "Reproducir música"}
-          >
-            {isPlaying ? (
-              <svg width="28" height="28" fill="none" viewBox="0 0 24 24">
-                <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" fill="#16a34a"/>
-              </svg>
-            ) : (
-              <svg width="28" height="28" fill="none" viewBox="0 0 24 24">
-                <path d="M8 5v14l11-7L8 5z" fill="#16a34a"/>
-              </svg>
-            )}
-          </button>
-          <audio ref={audioRef} src={MUSIC_SRC} loop autoPlay />
-
           <div
             ref={containerRef}
             className="w-full h-[700px] rounded-3xl shadow-2xl overflow-hidden cursor-grab active:cursor-grabbing relative"
@@ -460,15 +442,16 @@ export default function Tree3D() {
               </div>
             </div>
           )}
-          
           {/* Info */}
           <div className="text-center mt-4">
             <p className="text-gray-500 text-sm">
-              💫 Arrastra para rotar el árbol | Toca los dichos para verlos
+              Arrastra para rotar el árbol | Toca los dichos para verlos
             </p>
           </div>
         </motion.div>
       </div>
+      {/* Audio para música de fondo */}
+      <audio ref={audioRef} src={MUSIC_SRC} loop autoPlay />
     </section>
   );
 }
