@@ -42,7 +42,7 @@ export default function ScrollToTop() {
   return (
     <AnimatePresence>
       {isVisible && (
-        <div className="fixed bottom-6 left-6 flex flex-row gap-4 z-50">
+        <div className="fixed bottom-6 left-6 flex flex-col-reverse gap-4 z-50 items-start">
           <motion.button
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -75,7 +75,7 @@ export default function ScrollToTop() {
                 <path d="M8 5v14l11-7L8 5z" fill="#16a34a"/>
               </svg>
             )}
-            <audio ref={audioRef} src="/relaxing-soft-piano-music-431679.mp3" loop autoPlay />
+            <audio ref={audioRef} src="/img/relaxing-soft-piano-music-431679.mp3" loop autoPlay />
           </motion.button>
         </div>
       )}

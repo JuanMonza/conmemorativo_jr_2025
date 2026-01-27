@@ -30,6 +30,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" className="overflow-x-hidden">
+      <head>
+        <link rel="icon" href="/img/banner_parque_conmemorativo_logo.png" type="image/png" sizes="any" />
+      </head>
       <body className="overflow-x-hidden">
         <Analytics />
         {children}
