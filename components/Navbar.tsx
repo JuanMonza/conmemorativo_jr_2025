@@ -20,9 +20,10 @@ export default function Navbar() {
   const menuItems = [
     { href: '#inicio', label: 'Inicio' },
     { href: '#beneficios', label: 'Beneficios' },
-    { href: '#servicios', label: 'Servicios' },
+    { href: '#servicios', label: 'Servicios', submenu: [
+      { href: '#talleres', label: 'Talleres' }
+    ] },
     { href: '#alianzas', label: 'Alianzas' },
-    { href: '#talleres', label: 'Talleres' },
     { href: '#cotizacion', label: 'Cotización' },
     { href: '#contacto', label: 'Contacto' },
   ];
@@ -62,19 +63,47 @@ export default function Navbar() {
             {/* Desktop Menu */}
             <div className="hidden md:flex md:items-center md:space-x-4">
               {menuItems.map((item, index) => (
-                <motion.a
-                  key={item.href}
-                  href={item.href}
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  whileHover={{ scale: 1.1, color: '#10b981' }}
-                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                    isScrolled ? 'text-gray-800 hover:text-emerald-600' : 'text-gray-900 hover:text-emerald-600'
-                  }`}
-                >
-                  {item.label}
-                </motion.a>
+                item.submenu ? (
+                  <div key={item.label} className="relative group">
+                    <motion.a
+                      href={item.href}
+                      initial={{ opacity: 0, y: -20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                      whileHover={{ scale: 1.1, color: '#10b981' }}
+                      className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                        isScrolled ? 'text-gray-800 hover:text-emerald-600' : 'text-gray-900 hover:text-emerald-600'
+                      }`}
+                    >
+                      {item.label}
+                    </motion.a>
+                    <div className="absolute left-0 mt-2 w-40 bg-white rounded-md shadow-lg opacity-0 group-hover:opacity-100 pointer-events-auto transition-opacity z-40 border border-emerald-100">
+                      {item.submenu.map((sub, subIdx) => (
+                        <a
+                          key={sub.href}
+                          href={sub.href}
+                          className="block px-4 py-2 text-gray-800 hover:bg-emerald-50 hover:text-emerald-600 text-sm rounded-md"
+                        >
+                          {sub.label}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                ) : (
+                  <motion.a
+                    key={item.href}
+                    href={item.href}
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    whileHover={{ scale: 1.1, color: '#10b981' }}
+                    className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                      isScrolled ? 'text-gray-800 hover:text-emerald-600' : 'text-gray-900 hover:text-emerald-600'
+                    }`}
+                  >
+                    {item.label}
+                  </motion.a>
+                )
               ))}
               
               {/* CTA Button - Experiencia 360 */}
