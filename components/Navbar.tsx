@@ -214,18 +214,46 @@ export default function Navbar() {
           >
             <div className="flex flex-col p-6 space-y-3">
               {menuItems.map((item, index) => (
-                <motion.a
-                  key={item.href}
-                  href={item.href}
-                  onClick={handleLinkClick}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.3, delay: index * 0.05 }}
-                  whileHover={{ x: 5, backgroundColor: 'rgba(16, 185, 129, 0.1)' }}
-                  className="text-gray-900 text-base font-medium hover:text-emerald-600 transition-all px-4 py-2 rounded-2xl"
-                >
-                  {item.label}
-                </motion.a>
+                item.submenu ? (
+                  <div key={item.label} className="relative group">
+                    <motion.a
+                      href={item.href}
+                      onClick={handleLinkClick}
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.3, delay: index * 0.05 }}
+                      whileHover={{ x: 5, backgroundColor: 'rgba(16, 185, 129, 0.1)' }}
+                      className="text-gray-900 text-base font-medium hover:text-emerald-600 transition-all px-4 py-2 rounded-2xl"
+                    >
+                      {item.label}
+                    </motion.a>
+                    <div className="ml-4 mt-1 pl-2 border-l-2 border-emerald-100">
+                      {item.submenu.map((sub, subIdx) => (
+                        <a
+                          key={sub.href}
+                          href={sub.href}
+                          onClick={handleLinkClick}
+                          className="block px-4 py-2 text-gray-800 hover:bg-emerald-50 hover:text-emerald-600 text-sm rounded-md"
+                        >
+                          {sub.label}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                ) : (
+                  <motion.a
+                    key={item.href}
+                    href={item.href}
+                    onClick={handleLinkClick}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.3, delay: index * 0.05 }}
+                    whileHover={{ x: 5, backgroundColor: 'rgba(16, 185, 129, 0.1)' }}
+                    className="text-gray-900 text-base font-medium hover:text-emerald-600 transition-all px-4 py-2 rounded-2xl"
+                  >
+                    {item.label}
+                  </motion.a>
+                )
               ))}
               
               {/* CTA Button Mobile - Experiencia 360 */}
