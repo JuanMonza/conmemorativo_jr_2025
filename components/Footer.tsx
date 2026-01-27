@@ -13,6 +13,7 @@ export default function Footer() {
     { href: "#galeria", label: "Galería" },
     { href: "#alianzas", label: "Alianzas" },
     { href: "#talleres", label: "Talleres de Duelo" },
+    { href: "#arbol-3d", label: "Árbol 3D" },
     { href: "#experiencia-360", label: "Experiencia 360°" },
     { href: "#cotizacion", label: "Cotización" },
     { href: "#contacto", label: "Contacto" },

@@ -23,6 +23,7 @@ export default function Navbar() {
     { href: '#servicios', label: 'Servicios' },
     { href: '#alianzas', label: 'Alianzas' },
     { href: '#talleres', label: 'Talleres' },
+    { href: '#arbol-3d', label: 'Árbol 3D' },
     { href: '#cotizacion', label: 'Cotización' },
     { href: '#contacto', label: 'Contacto' },
   ];

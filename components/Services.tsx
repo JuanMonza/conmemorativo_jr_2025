@@ -2,11 +2,12 @@
 
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 
 export default function Services() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
 
   const services = [
     {
@@ -78,7 +79,13 @@ export default function Services() {
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
               transition={{ duration: 0.5, delay: index * 0.15 }}
               whileHover={{ y: -10, scale: 1.02 }}
-              className="bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all border-2 border-gray-100"
+              onClick={() => setExpandedIndex(expandedIndex === index ? null : index)}
+              className={`${
+                expandedIndex === index ? 'rounded-2xl' : 'rounded-full'
+              } bg-white overflow-hidden shadow-xl hover:shadow-2xl transition-all border-2 border-gray-100 cursor-pointer`}
+              style={{
+                aspectRatio: expandedIndex === index ? 'auto' : '1'
+              }}
             >
               {/* Encabezado con color */}
               <div className={`${service.bgColor} p-6 text-center border-b-4 border-${service.color}-400`}>
@@ -91,46 +98,67 @@ export default function Services() {
                 </p>
               </div>
 
-              {/* Contenido */}
-              <div className="p-6">
-                <p className="text-gray-700 text-sm mb-6 italic">
-                  "{service.description}"
-                </p>
+              {/* Contenido - Oculto por defecto, mostrado cuando expandido */}
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={expandedIndex === index ? { opacity: 1, height: 'auto' } : { opacity: 0, height: 0 }}
+                transition={{ duration: 0.3 }}
+                className="overflow-hidden"
+              >
+                <div className="p-6">
+                  <p className="text-gray-700 text-sm mb-6 italic">
+                    "{service.description}"
+                  </p>
 
-                {/* Lista de beneficios */}
-                <ul className="space-y-3 mb-6">
-                  {service.items.map((item, i) => (
-                    <li key={i} className="flex items-start gap-3">
-                      <span className="text-emerald-600 font-bold text-xl">•</span>
-                      <span className="text-gray-700 text-sm">{item}</span>
-                    </li>
-                  ))}
-                </ul>
+                  {/* Lista de beneficios */}
+                  <ul className="space-y-3 mb-6">
+                    {service.items.map((item, i) => (
+                      <li key={i} className="flex items-start gap-3">
+                        <span className="text-emerald-600 font-bold text-xl">•</span>
+                        <span className="text-gray-700 text-sm">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
 
-                {/* Botones de acción */}
-                <div className="space-y-3">
-                  <motion.a
-                    href={`https://wa.me/573228147191?text=Hola,%20deseo%20cotizar%20el%20servicio%20de%20${service.title}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="block w-full bg-emerald-600 text-white py-3 rounded-lg font-bold hover:bg-emerald-700 transition-all text-center shadow-md"
-                  >
-                    Cotizar
-                  </motion.a>
-                  <motion.a
-                    href={`https://wa.me/573228147191?text=Hola,%20deseo%20más%20información%20sobre%20el%20servicio%20${service.title}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="block w-full border-2 border-gray-300 text-gray-700 py-2 rounded-lg font-semibold hover:bg-gray-50 transition-all text-center"
-                  >
-                    Solicitar Asesor
-                  </motion.a>
+                  {/* Botones de acción */}
+                  <div className="space-y-3">
+                    <motion.a
+                      href={`https://wa.me/573228147191?text=Hola,%20deseo%20cotizar%20el%20servicio%20de%20${service.title}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="block w-full bg-emerald-600 text-white py-3 rounded-lg font-bold hover:bg-emerald-700 transition-all text-center shadow-md"
+                    >
+                      Cotizar
+                    </motion.a>
+                    <motion.a
+                      href={`https://wa.me/573228147191?text=Hola,%20deseo%20más%20información%20sobre%20el%20servicio%20${service.title}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="block w-full border-2 border-gray-300 text-gray-700 py-2 rounded-lg font-semibold hover:bg-gray-50 transition-all text-center"
+                    >
+                      Solicitar Asesor
+                    </motion.a>
+                  </div>
                 </div>
-              </div>
+              </motion.div>
+
+              {/* Botón Ver Más - Visible solo cuando colapsado */}
+              {expandedIndex !== index && (
+                <motion.div
+                  className="p-4 text-center"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <button className="text-emerald-600 font-bold text-sm hover:text-emerald-700 transition-colors">
+                    Ver más
+                  </button>
+                </motion.div>
+              )}
             </motion.div>
           ))}
         </div>

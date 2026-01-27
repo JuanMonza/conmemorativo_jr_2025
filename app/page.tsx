@@ -9,6 +9,7 @@ import Alliances from '@/components/Alliances';
 import Workshops from '@/components/Workshops';
 import Experience360 from '@/components/Experience360';
 import LifeConnection from '@/components/LifeConnection';
+import Tree3D from '@/components/Tree3D';
 import CorporateExperience from '@/components/CorporateExperience';
 import QuoteForm from '@/components/QuoteForm';
 import Contact from '@/components/Contact';
@@ -28,10 +29,11 @@ export default function Home() {
       <Benefits />
       <Services />
       <Gallery />
-      <Alliances />
+      <Tree3D />
       <Workshops />
       <Experience360 />
       <LifeConnection />
+      <Alliances />
       <CorporateExperience />
       <QuoteForm />
       <Contact />
