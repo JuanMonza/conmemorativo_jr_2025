@@ -1,11 +1,12 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useContext } from 'react';
+import { LangContext } from './LangContext';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { motion } from 'framer-motion';
 
-const quotes = [
+const quotesES = [
   { text: "La vida es lo que pasa mientras estás ocupado", author: "John Lennon" },
   { text: "Vive como si fueras a morir mañana", author: "Mahatma Gandhi" },
   { text: "Cada día es una nueva oportunidad", author: "Frida Kahlo" },
@@ -19,8 +20,21 @@ const quotes = [
   { text: "Vive intensamente", author: "Frida Kahlo" },
   { text: "Honra tu esencia", author: "Anónimo" },
   { text: "El gran poder existe en la fuerza irresistible del amor", author: "Gabriel García Márquez" }
-  
-
+];
+const quotesEN = [
+  { text: "Life is what happens while you are busy", author: "John Lennon" },
+  { text: "Live as if you were to die tomorrow", author: "Mahatma Gandhi" },
+  { text: "Every day is a new opportunity", author: "Frida Kahlo" },
+  { text: "True wealth is health", author: "Jorge Mojica" },
+  { text: "Love deeply", author: "Frida Kahlo" },
+  { text: "Life is a journey", author: "Ralph Waldo Emerson" },
+  { text: "What matters is how you live", author: "Anonymous" },
+  { text: "To live is to take risks", author: "Jorge Mojica" },
+  { text: "In life, the path is what matters", author: "Confucius" },
+  { text: "Life gives us second chances", author: "Paulo Coelho" },
+  { text: "Live intensely", author: "Frida Kahlo" },
+  { text: "Honor your essence", author: "Anonymous" },
+  { text: "Great power exists in the irresistible force of love", author: "Gabriel García Márquez" }
 ];
 
 const MUSIC_SRC = "/relaxing-soft-piano-music-431679.mp3"; // Archivo mp3 actualizado
@@ -136,6 +150,7 @@ function createTextSprite(text: string, author: string, size: number = 60) {
 }
 
 export default function Tree3D() {
+  const { lang } = useContext(LangContext) ?? { lang: 'es' };
   const containerRef = useRef<HTMLDivElement>(null);
   const sceneRef = useRef<THREE.Scene | null>(null);
   const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
@@ -147,6 +162,7 @@ export default function Tree3D() {
   const [volume, setVolume] = useState(0.5);
   const dragRef = useRef({ x: 0, y: 0, targetX: 0, targetY: 0 });
   const [selectedQuote, setSelectedQuote] = useState<string | null>(null);
+  const quotes = lang === 'es' ? quotesES : quotesEN;
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -392,10 +408,16 @@ export default function Tree3D() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Árbol de <span className="text-emerald-600">Vida y Memoria</span>
+            {lang === 'es' ? (<>
+              Árbol de <span className="text-emerald-600">Vida y Memoria</span>
+            </>) : (<>
+              <span className="text-emerald-600">Tree of Life</span> & Memory
+            </>)}
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Interactúa con nuestro árbol 3D. Rota, explora y toca los dichos inspiradores que flotan alrededor.
+            {lang === 'es'
+              ? 'Interactúa con nuestro árbol 3D. Rota, explora y toca los dichos inspiradores que flotan alrededor.'
+              : 'Interact with our 3D tree. Rotate, explore, and tap the inspiring quotes floating around.'}
           </p>
         </motion.div>
 
@@ -438,14 +460,16 @@ export default function Tree3D() {
             <div className="absolute inset-0 flex items-center justify-center bg-white/50 rounded-3xl">
               <div className="text-center">
                 <div className="w-12 h-12 border-4 border-emerald-200 border-t-emerald-600 rounded-full animate-spin mx-auto mb-4"></div>
-                <p className="text-gray-600">Cargando árbol 3D...</p>
+                <p className="text-gray-600">{lang === 'es' ? 'Cargando árbol 3D...' : 'Loading 3D tree...'}</p>
               </div>
             </div>
           )}
           {/* Info */}
           <div className="text-center mt-4">
             <p className="text-gray-500 text-sm">
-              Arrastra para rotar el árbol | Toca los dichos para verlos
+              {lang === 'es'
+                ? 'Arrastra para rotar el árbol | Toca los dichos para verlos'
+                : 'Drag to rotate the tree | Tap the quotes to view them'}
             </p>
           </div>
         </motion.div>

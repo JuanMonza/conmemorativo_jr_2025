@@ -1,10 +1,12 @@
-'use client';
 
-import { useState, useEffect, useRef } from 'react';
+"use client";
+import { useState, useEffect, useRef, useContext } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { LangContext } from './LangContext';
 
 export default function ScrollToTop() {
   const [isVisible, setIsVisible] = useState(false);
+  const { lang } = useContext(LangContext);
 
   useEffect(() => {
     const toggleVisibility = () => {
@@ -14,7 +16,6 @@ export default function ScrollToTop() {
         setIsVisible(false);
       }
     };
-
     window.addEventListener('scroll', toggleVisibility);
     return () => window.removeEventListener('scroll', toggleVisibility);
   }, []);
@@ -39,6 +40,7 @@ export default function ScrollToTop() {
       setIsPlaying(false);
     }
   };
+
   return (
     <AnimatePresence>
       {isVisible && (
@@ -51,6 +53,7 @@ export default function ScrollToTop() {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             className="bg-gray-800 text-white w-16 h-16 rounded-full flex items-center justify-center shadow-2xl hover:bg-gray-700 transition-all duration-300"
+            aria-label={lang === 'es' ? 'Subir al inicio' : 'Scroll to top'}
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 15l7-7 7 7" />

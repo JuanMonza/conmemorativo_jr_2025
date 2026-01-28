@@ -1,23 +1,26 @@
-'use client';
 
+"use client";
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import { useContext } from 'react';
+import { LangContext } from './LangContext';
 
 export default function Footer() {
+  const { lang } = useContext(LangContext);
   const links = [
-    { href: "#inicio", label: "Inicio" },
-    { href: "#introduccion", label: "Un Espacio de Paz" },
-    { href: "#proposito", label: "Nuestro Propósito" },
-    { href: "#beneficios", label: "Beneficios" },
-    { href: "#servicios", label: "Servicios" },
-    { href: "#galeria", label: "Galería" },
-    { href: "#alianzas", label: "Alianzas" },
-    { href: "#talleres", label: "Talleres de Duelo" },
-    // { href: "#arbol-3d", label: "Árbol 3D" }, // Eliminado según solicitud
-    { href: "#experiencia-360", label: "Experiencia 360°" },
-    { href: "#cotizacion", label: "Cotización" },
-    { href: "#contacto", label: "Contacto" },
-    { href: "#ubicacion", label: "Ubicación" }
+    { href: "#inicio", label: lang === 'es' ? "Inicio" : "Home" },
+    { href: "#introduccion", label: lang === 'es' ? "Un Espacio de Paz" : "A Place of Peace" },
+    { href: "#proposito", label: lang === 'es' ? "Nuestro Propósito" : "Our Purpose" },
+    { href: "#beneficios", label: lang === 'es' ? "Beneficios" : "Benefits" },
+    { href: "#servicios", label: lang === 'es' ? "Servicios" : "Services" },
+    { href: "#galeria", label: lang === 'es' ? "Galería" : "Gallery" },
+    { href: "#alianzas", label: lang === 'es' ? "Alianzas" : "Alliances" },
+    { href: "#talleres", label: lang === 'es' ? "Talleres de Duelo" : "Grief Workshops" },
+    // { href: "#arbol-3d", label: lang === 'es' ? "Árbol 3D" : "3D Tree" },
+    { href: "#experiencia-360", label: lang === 'es' ? "Experiencia 360°" : "360° Experience" },
+    { href: "#cotizacion", label: lang === 'es' ? "Cotización" : "Quote" },
+    { href: "#contacto", label: lang === 'es' ? "Contacto" : "Contact" },
+    { href: "#ubicacion", label: lang === 'es' ? "Ubicación" : "Location" }
   ];
 
   const socials = [
@@ -57,9 +60,10 @@ export default function Footer() {
               className="h-16 w-auto mb-4"
             />
             <p className="text-gray-300 text-sm leading-relaxed">
-              Un descanso eterno con significado, armonía y amor. Cenizarios y osarios en Cartago.
+              {lang === 'es'
+                ? 'Un descanso eterno con significado, armonía y amor. Cenizarios y osarios en Cartago.'
+                : 'An eternal rest with meaning, harmony, and love. Columbariums and ossuaries in Cartago.'}
             </p>
-            
             {/* Botones de acción */}
             <div className="flex flex-col gap-3 mt-4">
               {/* Botón Árbol */}
@@ -72,7 +76,7 @@ export default function Footer() {
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M12 2C10.07 2 8.5 3.57 8.5 5.5c0 .96.39 1.82 1.02 2.45C7.01 8.36 5 10.92 5 14c0 2.76 2.24 5 5 5h4c2.76 0 5-2.24 5-5 0-3.08-2.01-5.64-4.52-6.05A3.495 3.495 0 0 0 15.5 5.5C15.5 3.57 13.93 2 12 2zm0 2c.83 0 1.5.67 1.5 1.5S12.83 7 12 7s-1.5-.67-1.5-1.5S11.17 4 12 4zm2 13h-4c-1.65 0-3-1.35-3-3 0-2.22 1.79-4.03 4-4.03s4 1.81 4 4.03c0 1.65-1.35 3-3 3z" />
                 </svg>
-                Árbol
+                {lang === 'es' ? 'Árbol' : 'Tree'}
               </motion.a>
               {/* Botón Experiencia 360 */}
               <motion.a
@@ -84,13 +88,13 @@ export default function Footer() {
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8Z" />
                 </svg>
-                Tour Virtual 360°
+                {lang === 'es' ? 'Tour Virtual 360°' : '360° Virtual Tour'}
               </motion.a>
             </div>
           </div>
 
           <div className="md:col-span-2">
-            <h4 className="text-lg font-semibold mb-4">Enlaces Rápidos</h4>
+            <h4 className="text-lg font-semibold mb-4">{lang === 'es' ? 'Enlaces Rápidos' : 'Quick Links'}</h4>
             <div className="grid grid-cols-2 gap-x-8 gap-y-2">
               {links.map((link, index) => (
                 <motion.a
@@ -106,10 +110,10 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="text-lg font-semibold mb-4">Contacto</h4>
+            <h4 className="text-lg font-semibold mb-4">{lang === 'es' ? 'Contacto' : 'Contact'}</h4>
             <div className="space-y-2 text-sm text-gray-300">
-              <p>Cartago, Valle del Cauca</p>
-              <p>Km 2.5 vía Zaragoza</p>
+              <p>{lang === 'es' ? 'Cartago, Valle del Cauca' : 'Cartago, Valle del Cauca'}</p>
+              <p>{lang === 'es' ? 'Km 2.5 vía Zaragoza' : 'Km 2.5 via Zaragoza'}</p>
               <motion.a
                 href="tel:+573228147191"
                 whileHover={{ color: '#10b981' }}
@@ -144,10 +148,18 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-gray-700 mt-8 pt-8 text-center">
-          <p className="text-gray-300 text-sm">© 2026 Jardines de Renacer. Todos los derechos reservados.</p>
-          <p className="text-gray-300 text-sm">Parque Conmemorativo Espiritual.</p>
+          <p className="text-gray-300 text-sm">
+            {lang === 'es'
+              ? '© 2026 Jardines de Renacer. Todos los derechos reservados.'
+              : '© 2026 Jardines de Renacer. All rights reserved.'}
+          </p>
+          <p className="text-gray-300 text-sm">
+            {lang === 'es'
+              ? 'Parque Conmemorativo Espiritual.'
+              : 'Spiritual Memorial Park.'}
+          </p>
           <p className="text-gray-400 text-sm mt-2">
-            Diseñado y desarrollado por{' '}
+            {lang === 'es' ? 'Diseñado y desarrollado por ' : 'Designed and developed by '}
             <motion.a
               href="https://github.com/JuanMonza"
               target="_blank"

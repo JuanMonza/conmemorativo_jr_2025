@@ -1,31 +1,34 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import Image from 'next/image';
+
+import { useState, useEffect, useContext } from "react";
+import { SpainFlag, UKFlag } from "./Flags";
+import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
+import { LangContext } from "./LangContext";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { lang, setLang } = useContext(LangContext) ?? { lang: 'es', setLang: () => {} };
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const menuItems = [
-    { href: '#inicio', label: 'Inicio' },
-    { href: '#beneficios', label: 'Beneficios' },
-    { href: '#servicios', label: 'Servicios', submenu: [
-      { href: '#talleres', label: 'Talleres' }
+    { href: "#inicio", label: lang === 'es' ? 'Inicio' : 'Home' },
+    { href: "#beneficios", label: lang === 'es' ? 'Beneficios' : 'Benefits' },
+    { href: "#servicios", label: lang === 'es' ? 'Servicios' : 'Services', submenu: [
+      { href: "#talleres", label: lang === 'es' ? 'Talleres' : 'Workshops' },
     ] },
-    { href: '#alianzas', label: 'Alianzas' },
-    { href: '#cotizacion', label: 'Cotización' },
-    { href: '#contacto', label: 'Contacto' },
+    { href: "#alianzas", label: lang === 'es' ? 'Alianzas' : 'Alliances' },
+    { href: "#cotizacion", label: lang === 'es' ? 'Cotización' : 'Quote' },
+    { href: "#contacto", label: lang === 'es' ? 'Contacto' : 'Contact' },
   ];
 
   const handleLinkClick = () => {
@@ -106,8 +109,8 @@ export default function Navbar() {
                 )
               ))}
               
-              {/* CTA Button - Experiencia 360 */}
-              <div className="flex flex-row gap-2 ml-4">
+              {/* CTA Button - Experiencia 360 y Árbol 3D */}
+              <div className="flex flex-row gap-2">
                 <motion.a
                   href="#experiencia-360"
                   initial={{ opacity: 0, scale: 0.8 }}
@@ -127,7 +130,7 @@ export default function Navbar() {
                     <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8Z" />
                     </svg>
-                    Tour Virtual 360°
+                    {lang === 'es' ? 'Tour Virtual 360°' : 'Virtual Tour 360°'}
                   </span>
                   <motion.div
                     className="absolute inset-0 border-2 border-white/50 rounded-full"
@@ -161,7 +164,7 @@ export default function Navbar() {
                     <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M12 2C7.03 2 3 6.03 3 11c0 4.97 4.03 9 9 9s9-4.03 9-9c0-4.97-4.03-9-9-9zm0 16c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7zm-1-7V7h2v4h3v2h-5z" />
                     </svg>
-                    Árbol 3D
+                    {lang === 'es' ? 'Árbol 3D' : '3D Tree'}
                   </span>
                   <motion.div
                     className="absolute inset-0 border-2 border-white/50 rounded-full"
@@ -197,6 +200,15 @@ export default function Navbar() {
                   d={mobileMenuOpen ? 'M6 18L18 6M6 6l12 12' : 'M4 6h16M4 12h16M4 18h16'}
                 />
               </svg>
+            </button>
+            {/* Botón de idioma al final */}
+            <button
+              onClick={() => setLang(lang === 'es' ? 'en' : 'es')}
+              className={`ml-4 rounded-full p-1 shadow-lg border-2 transition-all flex items-center justify-center w-10 h-10 bg-white/80 hover:bg-white/90 ${lang === 'es' ? 'border-yellow-400' : 'border-blue-400'}`}
+              aria-label={lang === 'es' ? 'Cambiar a inglés' : 'Switch to Spanish'}
+              style={{ order: 99 }}
+            >
+              {lang === 'es' ? <SpainFlag /> : <UKFlag />}
             </button>
           </div>
         </div>

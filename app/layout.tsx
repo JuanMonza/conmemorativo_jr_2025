@@ -1,7 +1,9 @@
+
 import type { Metadata } from "next";
 import "./globals.css";
 import FloatingQuoteReminder from "@/components/FloatingQuoteReminder";
 import Analytics from "@/components/Analytics";
+import LangProvider from "@/components/LangProvider";
 
 export const metadata: Metadata = {
   title: "Jardines de Renacer - Cenizarios y Osarios en Cartago",
@@ -34,9 +36,11 @@ export default function RootLayout({
         <link rel="icon" href="/img/banner_parque_conmemorativo_logo.png" type="image/png" sizes="any" />
       </head>
       <body className="overflow-x-hidden">
-        <Analytics />
-        {children}
-        <FloatingQuoteReminder />
+        <LangProvider>
+          <Analytics />
+          {children}
+          <FloatingQuoteReminder />
+        </LangProvider>
       </body>
     </html>
   );

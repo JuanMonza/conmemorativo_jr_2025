@@ -1,35 +1,38 @@
 'use client';
 
+
 import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, useContext } from 'react';
 import Image from 'next/image';
+import { LangContext } from './LangContext';
 
 export default function Location() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { lang } = useContext(LangContext);
 
   const openGoogleMaps = () => {
-    const destination = "4.711330,-75.920030"; // Coordenadas del parque
+    const destination = "4.711330,-75.920030";
     const url = `https://www.google.com/maps/dir/?api=1&destination=${destination}`;
     window.open(url, '_blank');
   };
 
   const features = [
-    { 
+    {
       icon: <svg className="w-12 h-12 text-blue-600" fill="currentColor" viewBox="0 0 24 24"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/></svg>,
-      title: "En Automóvil", 
-      description: "Fácil acceso desde la vía principal",
+      title: lang === 'es' ? 'En Automóvil' : 'By Car',
+      description: lang === 'es' ? 'Fácil acceso desde la vía principal' : 'Easy access from the main road',
       action: openGoogleMaps
     },
-    { 
+    {
       icon: <svg className="w-12 h-12 text-blue-600" fill="currentColor" viewBox="0 0 24 24"><path d="M4 16c0 .88.39 1.67 1 2.22V20c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h8v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1.78c.61-.55 1-1.34 1-2.22V6c0-3.5-3.58-4-8-4s-8 .5-8 4v10zm3.5 1c-.83 0-1.5-.67-1.5-1.5S6.67 14 7.5 14s1.5.67 1.5 1.5S8.33 17 7.5 17zm9 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm1.5-6H6V6h12v5z"/></svg>,
-      title: "Transporte Público", 
-      description: "Rutas disponibles desde el centro" 
+      title: lang === 'es' ? 'Transporte Público' : 'Public Transport',
+      description: lang === 'es' ? 'Rutas disponibles desde el centro' : 'Routes available from downtown'
     },
-    { 
+    {
       icon: <svg className="w-12 h-12 text-blue-600" fill="currentColor" viewBox="0 0 24 24"><path d="M13 3H6v18h4v-6h3c3.31 0 6-2.69 6-6s-2.69-6-6-6zm.2 8H10V7h3.2c1.1 0 2 .9 2 2s-.9 2-2 2z"/></svg>,
-      title: "Estacionamiento", 
-      description: "Amplio parqueadero gratuito" 
+      title: lang === 'es' ? 'Estacionamiento' : 'Parking',
+      description: lang === 'es' ? 'Amplio parqueadero gratuito' : 'Large free parking lot'
     }
   ];
 
@@ -43,9 +46,15 @@ export default function Location() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6"><span className="text-blue-600">¿Cómo Llegar?</span></h2>
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            <span className="text-blue-600">
+              {lang === 'es' ? '¿Cómo Llegar?' : 'How to Get Here?'}
+            </span>
+          </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Estamos ubicados en Cartago, Valle del Cauca - Km 2.5 vía Zaragoza
+            {lang === 'es'
+              ? 'Estamos ubicados en Cartago, Valle del Cauca - Km 2.5 vía Zaragoza'
+              : 'We are located in Cartago, Valle del Cauca - Km 2.5 via Zaragoza'}
           </p>
         </motion.div>
 

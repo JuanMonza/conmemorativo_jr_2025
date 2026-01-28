@@ -1,22 +1,42 @@
-'use client';
 
-import { useState, useRef } from 'react';
+"use client";
+import { useState, useRef, useContext } from 'react';
 import { motion, useInView } from 'framer-motion';
 import Image from 'next/image';
+import { LangContext } from './LangContext';
 
 export default function Gallery() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const { lang } = useContext(LangContext);
 
   const images = [
-    { src: "/img/img_1_1.webp", alt: "Vista aérea del parque" },
-    { src: "/img/img_1_10.webp", alt: "Zona verde y jardines" },
-    { src: "/img/img_1_12.webp", alt: "Caminos y senderos" },
-    { src: "/img/img_1_17.webp", alt: "Árboles y naturaleza" },
-    { src: "/img/img_1_20.webp", alt: "Vista panorámica" },
-    { src: "/img/img_1_21.webp", alt: "Espacios de contemplación" },
+    {
+      src: "/img/img_1_1.webp",
+      alt: lang === 'es' ? 'Vista aérea del parque' : 'Aerial view of the park'
+    },
+    {
+      src: "/img/img_1_10.webp",
+      alt: lang === 'es' ? 'Zona verde y jardines' : 'Green area and gardens'
+    },
+    {
+      src: "/img/img_1_12.webp",
+      alt: lang === 'es' ? 'Caminos y senderos' : 'Paths and trails'
+    },
+    {
+      src: "/img/img_1_17.webp",
+      alt: lang === 'es' ? 'Árboles y naturaleza' : 'Trees and nature'
+    },
+    {
+      src: "/img/img_1_20.webp",
+      alt: lang === 'es' ? 'Vista panorámica' : 'Panoramic view'
+    },
+    {
+      src: "/img/img_1_21.webp",
+      alt: lang === 'es' ? 'Espacios de contemplación' : 'Contemplation spaces'
+    },
   ];
 
   const nextImage = () => {
@@ -39,6 +59,8 @@ export default function Gallery() {
     setCurrentSlide((prev) => (prev - 1 + images.length) % images.length);
   };
 
+  // ...el resto del archivo permanece igual...
+
   return (
     <section id="galeria" className="py-20 bg-gray-50">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -49,9 +71,13 @@ export default function Gallery() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Galería del <span className="text-emerald-600">Parque</span></h2>
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            {lang === 'es' ? 'Galería del ' : 'Park '}<span className="text-emerald-600">{lang === 'es' ? 'Parque' : 'Gallery'}</span>
+          </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Descubre la belleza y serenidad de nuestros espacios a través de estas imágenes
+            {lang === 'es'
+              ? 'Descubre la belleza y serenidad de nuestros espacios a través de estas imágenes'
+              : 'Discover the beauty and serenity of our spaces through these images'}
           </p>
         </motion.div>
 
@@ -117,7 +143,7 @@ export default function Gallery() {
           <button
             onClick={prevSlide}
             className="absolute left-0 top-1/2 -translate-y-1/2 bg-white/80 backdrop-blur-sm p-2 rounded-full shadow-lg hover:bg-white transition-all z-10"
-            aria-label="Anterior"
+            aria-label={lang === 'es' ? 'Anterior' : 'Previous'}
           >
             <svg className="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -126,7 +152,7 @@ export default function Gallery() {
           <button
             onClick={nextSlide}
             className="absolute right-0 top-1/2 -translate-y-1/2 bg-white/80 backdrop-blur-sm p-2 rounded-full shadow-lg hover:bg-white transition-all z-10"
-            aria-label="Siguiente"
+            aria-label={lang === 'es' ? 'Siguiente' : 'Next'}
           >
             <svg className="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -142,7 +168,7 @@ export default function Gallery() {
                 className={`w-2 h-2 rounded-full transition-all ${
                   currentSlide === index ? 'bg-emerald-600 w-6' : 'bg-gray-300'
                 }`}
-                aria-label={`Ir a imagen ${index + 1}`}
+                aria-label={lang === 'es' ? `Ir a imagen ${index + 1}` : `Go to image ${index + 1}`}
               />
             ))}
           </div>

@@ -2,10 +2,13 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { LangContext } from './LangContext';
+
 
 export default function Hero() {
   const [currentImage, setCurrentImage] = useState(0);
+  // El idioma ahora se controla desde el Navbar
   
   const images = [
     '/img/img_1_1.webp',
@@ -32,8 +35,28 @@ export default function Hero() {
     setCurrentImage((prev) => (prev - 1 + images.length) % images.length);
   };
 
+  // Frases para el carrusel de texto
+  const { lang } = useContext(LangContext) ?? { lang: 'es' };
+  const frases = lang === 'es'
+    ? [
+        '"Conmemora el recuerdo, la trascendencia y el amor"',
+        '"Trasciende en el amor del recuerdo y la vida"',
+        '"Celebra la memoria, siembra esperanza"',
+        '"El amor trasciende el tiempo y el espacio"'
+      ]
+    : [
+        '"Commemorate memory, transcendence and love"',
+        '"Transcend in the love of memory and life"',
+        '"Celebrate memory, sow hope"',
+        '"Love transcends time and space"'
+      ];
+
+  // Calcula el índice de frase sincronizado con las imágenes
+  const fraseIndex = currentImage % frases.length;
+
   return (
     <section id="inicio" className="relative min-h-screen flex items-center justify-center text-white overflow-hidden">
+
       {/* Background Carousel */}
       <div className="absolute inset-0 z-0">
         <AnimatePresence mode="wait">
@@ -103,23 +126,32 @@ export default function Hero() {
           transition={{ duration: 0.8 }}
           className="bg-white/10 backdrop-blur-xl border-2 border-white/20 rounded-3xl p-8 md:p-12 shadow-2xl"
         >
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="text-4xl sm:text-5xl md:text-7xl font-bold mb-6"
-        >
-          Honra la memoria con dignidad, vida y conmemoración
-        </motion.h1>
-
-        <motion.p
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          className="text-xl md:text-2xl mb-8 opacity-90"
-        >
-          Elige un cenizario: una forma más humana, sostenible y serena para recordar a quienes amas
-        </motion.p>
+          <AnimatePresence mode="wait">
+            {frases.map((frase, idx) =>
+              fraseIndex === idx && (
+                <motion.h1
+                  key={fraseIndex}
+                  initial={
+                    idx === 0 ? { opacity: 0, y: 30 }
+                    : idx === 1 ? { opacity: 0, scale: 0.8 }
+                    : idx === 2 ? { opacity: 0, x: -60 }
+                    : { opacity: 0, rotate: -10, y: 30 }
+                  }
+                  animate={{ opacity: 1, y: 0, x: 0, scale: 1, rotate: 0 }}
+                  exit={
+                    idx === 0 ? { opacity: 0, y: -30 }
+                    : idx === 1 ? { opacity: 0, scale: 1.2 }
+                    : idx === 2 ? { opacity: 0, x: 60 }
+                    : { opacity: 0, rotate: 10, y: -30 }
+                  }
+                  transition={{ duration: 0.8, ease: "easeOut" }}
+                  className="text-4xl sm:text-5xl md:text-7xl font-bold mb-6"
+                >
+                  {frase}
+                </motion.h1>
+              )
+            )}
+          </AnimatePresence>
 
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -133,18 +165,22 @@ export default function Hero() {
             whileTap={{ scale: 0.95 }}
             className="inline-block bg-white text-emerald-700 px-8 py-4 rounded-full font-bold transition-all duration-300 shadow-lg hover:shadow-2xl hover:bg-emerald-50 text-lg"
           >
-            Cotiza tu cenizario ahora
+            {lang === 'es' ? 'Cotiza tu cenizario ahora' : 'Get your columbarium quote now'}
           </motion.a>
 
           <motion.a
-            href="https://wa.me/573228147191?text=Hola,%20deseo%20información%20inmediata%20sobre%20los%20cenizarios%20del%20Parque%20Conmemorativo%20Jardines%20del%20Renacer"
+            href={
+              lang === 'es'
+                ? "https://wa.me/573228147191?text=Hola,%20deseo%20información%20inmediata%20sobre%20los%20cenizarios%20del%20Parque%20Conmemorativo%20Jardines%20del%20Renacer"
+                : "https://wa.me/573228147191?text=Hello,%20I%20want%20immediate%20information%20about%20the%20columbariums%20at%20Parque%20Conmemorativo%20Jardines%20del%20Renacer."
+            }
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="inline-block bg-green-500 text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 shadow-lg hover:shadow-xl hover:bg-green-600"
           >
-            Solicita información inmediata
+            {lang === 'es' ? 'Solicita información inmediata' : 'Request immediate information'}
           </motion.a>
         </motion.div>
         </motion.div>

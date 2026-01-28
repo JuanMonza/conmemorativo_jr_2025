@@ -1,17 +1,18 @@
-'use client';
 
+"use client";
 import { motion, AnimatePresence } from 'framer-motion';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { LangContext } from './LangContext';
 
 export default function FloatingQuoteReminder() {
   const [isOpen, setIsOpen] = useState(false);
+  const { lang } = useContext(LangContext);
 
   useEffect(() => {
     // Mostrar el popup después de 10 segundos de navegación
     const timer = setTimeout(() => {
       setIsOpen(true);
     }, 10000);
-
     return () => clearTimeout(timer);
   }, []);
 
@@ -21,7 +22,9 @@ export default function FloatingQuoteReminder() {
 
   const handleQuoteClick = () => {
     window.open(
-      'https://wa.me/573228147191?text=Hola,%20deseo%20información%20inmediata%20y%20cotización%20de%20cenizarios%20para%20el%20Parque%20Conmemorativo%20Jardines%20del%20Renacer',
+      lang === 'es'
+        ? 'https://wa.me/573228147191?text=Hola,%20deseo%20información%20inmediata%20y%20cotización%20de%20cenizarios%20para%20el%20Parque%20Conmemorativo%20Jardines%20del%20Renacer'
+        : 'https://wa.me/573228147191?text=Hello,%20I%20want%20immediate%20information%20and%20a%20quote%20for%20columbarium%20at%20Parque%20Conmemorativo%20Jardines%20del%20Renacer',
       '_blank'
     );
     setIsOpen(false);
@@ -40,13 +43,17 @@ export default function FloatingQuoteReminder() {
           <div className="bg-white/90 rounded-2xl shadow-2xl overflow-hidden border border-white/50 backdrop-blur-xl">
             {/* Encabezado con color */}
             <div className="bg-gradient-to-r from-emerald-600/90 to-emerald-700/90 text-white p-4 backdrop-blur-md">
-              <h3 className="font-bold text-lg">¿Deseas información inmediata?</h3>
+              <h3 className="font-bold text-lg">
+                {lang === 'es' ? '¿Deseas información inmediata?' : 'Do you want immediate information?'}
+              </h3>
             </div>
 
             {/* Contenido */}
             <div className="p-4">
               <p className="text-gray-700 text-sm mb-4">
-                Cotiza tu cenizario ahora y conoce nuestras opciones personalizadas. Responderemos en minutos.
+                {lang === 'es'
+                  ? 'Cotiza tu cenizario ahora y conoce nuestras opciones personalizadas. Responderemos en minutos.'
+                  : 'Get a quote for your columbarium now and learn about our personalized options. We will respond in minutes.'}
               </p>
 
               {/* Botones de acción */}
@@ -57,7 +64,7 @@ export default function FloatingQuoteReminder() {
                   whileTap={{ scale: 0.95 }}
                   className="flex-1 bg-emerald-600 text-white py-2 px-4 rounded-lg font-semibold hover:bg-emerald-700 transition-all text-sm"
                 >
-                  Cotizar ahora
+                  {lang === 'es' ? 'Cotizar ahora' : 'Get a quote now'}
                 </motion.button>
                 <motion.button
                   onClick={closeReminder}

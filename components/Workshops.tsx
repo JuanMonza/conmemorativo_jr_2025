@@ -1,55 +1,160 @@
-'use client';
+"use client";
 
-import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { motion, useInView } from "framer-motion";
+import { useRef, useContext } from "react";
+import { LangContext } from "./LangContext";
 
 export default function Workshops() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { lang } = useContext(LangContext) ?? { lang: "es" };
 
-  const features = [
-    { 
+  const features = lang === "es" ? [
+    {
       icon: (
         <svg className="w-10 h-10 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+          />
         </svg>
       ),
       bgColor: "bg-purple-100",
-      title: "Grupos de Apoyo", 
-      description: "Comparte experiencias y encuentra consuelo en comunidad" 
+      title: "Grupos de Apoyo",
+      description: "Comparte experiencias y encuentra consuelo en comunidad",
     },
-    { 
+    {
       icon: (
         <svg className="w-10 h-10 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 2v6a1 1 0 001 1h6" />
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+          />
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M12 2v6a1 1 0 001 1h6"
+          />
         </svg>
       ),
       bgColor: "bg-blue-100",
-      title: "Terapia Profesional", 
-      description: "Psicólogos especializados en procesos de duelo" 
+      title: "Terapia Profesional",
+      description: "Psicólogos especializados en procesos de duelo",
     },
-    { 
+    {
       icon: (
         <svg className="w-10 h-10 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+          />
         </svg>
       ),
       bgColor: "bg-emerald-100",
-      title: "Material de Apoyo", 
-      description: "Recursos y guías para entender el proceso de duelo" 
+      title: "Material de Apoyo",
+      description: "Recursos y guías para entender el proceso de duelo",
     },
-    { 
+    {
       icon: (
         <svg className="w-10 h-10 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z" />
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z" />
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"
+          />
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
+          />
         </svg>
       ),
       bgColor: "bg-amber-100",
-      title: "Ceremonias de Sanación", 
-      description: "Rituales terapéuticos para honrar y recordar" 
-    }
+      title: "Ceremonias de Sanación",
+      description: "Rituales terapéuticos para honrar y recordar",
+    },
+  ] : [
+    {
+      icon: (
+        <svg className="w-10 h-10 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+          />
+        </svg>
+      ),
+      bgColor: "bg-purple-100",
+      title: "Support Groups",
+      description: "Share experiences and find comfort in community",
+    },
+    {
+      icon: (
+        <svg className="w-10 h-10 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+          />
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M12 2v6a1 1 0 001 1h6"
+          />
+        </svg>
+      ),
+      bgColor: "bg-blue-100",
+      title: "Professional Therapy",
+      description: "Psychologists specialized in grief processes",
+    },
+    {
+      icon: (
+        <svg className="w-10 h-10 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+          />
+        </svg>
+      ),
+      bgColor: "bg-emerald-100",
+      title: "Support Material",
+      description: "Resources and guides to understand the grieving process",
+    },
+    {
+      icon: (
+        <svg className="w-10 h-10 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"
+          />
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
+          />
+        </svg>
+      ),
+      bgColor: "bg-amber-100",
+      title: "Healing Ceremonies",
+      description: "Therapeutic rituals to honor and remember",
+    },
   ];
 
   return (
@@ -62,11 +167,22 @@ export default function Workshops() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          {/* CAMBIO AQUÍ: Eliminé 'title-underline' y 'title-shadow' */}
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Talleres de <span className="text-emerald-600">Duelo</span>
+            {lang === "es" ? (
+              <>
+                Talleres de <span className="text-emerald-600">Duelo</span>
+              </>
+            ) : (
+              <>
+                <span className="text-emerald-600">Grief</span> Workshops
+              </>
+            )}
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">Acompañamiento profesional en tu proceso de sanación</p>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            {lang === "es"
+              ? "Acompañamiento profesional en tu proceso de sanación"
+              : "Professional support in your healing process"}
+          </p>
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -77,11 +193,16 @@ export default function Workshops() {
             className="relative flex items-center justify-center min-h-[450px]"
           >
             {/* Corazón de fondo */}
-            <svg className="absolute w-full h-full max-w-md max-h-md" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
-              <path d="M50,85 C50,85 15,60 15,40 C15,25 25,15 35,15 C42,15 48,20 50,25 C52,20 58,15 65,15 C75,15 85,25 85,40 C85,60 50,85 50,85 Z" 
-                    fill="#dbeafe" />
+            <svg
+              className="absolute w-full h-full max-w-md max-h-md"
+              viewBox="0 0 100 100"
+              preserveAspectRatio="xMidYMid meet"
+            >
+              <path
+                d="M50,85 C50,85 15,60 15,40 C15,25 25,15 35,15 C42,15 48,20 50,25 C52,20 58,15 65,15 C75,15 85,25 85,40 C85,60 50,85 50,85 Z"
+                fill="#dbeafe"
+              />
             </svg>
-            
             {/* Contenido sobre el corazón */}
             <div className="relative z-10 flex items-center justify-center">
               <motion.div
@@ -91,7 +212,7 @@ export default function Workshops() {
                 transition={{
                   duration: 1.5,
                   repeat: Infinity,
-                  ease: "easeInOut"
+                  ease: "easeInOut",
                 }}
               >
                 <svg className="w-56 h-56 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
@@ -116,11 +237,15 @@ export default function Workshops() {
                 whileHover={{ x: 10 }}
                 className="flex items-start"
               >
-                <div className={`w-16 h-16 ${feature.bgColor} rounded-full flex items-center justify-center mr-4 flex-shrink-0`}>
+                <div
+                  className={`w-16 h-16 ${feature.bgColor} rounded-full flex items-center justify-center mr-4 flex-shrink-0`}
+                >
                   {feature.icon}
                 </div>
                 <div>
-                  <h4 className="text-xl font-semibold text-gray-800 mb-2">{feature.title}</h4>
+                  <h4 className="text-xl font-semibold text-gray-800 mb-2">
+                    {feature.title}
+                  </h4>
                   <p className="text-gray-600">{feature.description}</p>
                 </div>
               </motion.div>
@@ -133,14 +258,16 @@ export default function Workshops() {
               className="mt-8"
             >
               <motion.a
-                href="https://wa.me/573228147191?text=Hola,%20me%20interesa%20participar%20en%20los%20Talleres%20de%20Duelo"
+                href={lang === "es"
+                  ? "https://wa.me/573228147191?text=Hola,%20me%20interesa%20participar%20en%20los%20Talleres%20de%20Duelo"
+                  : "https://wa.me/573228147191?text=Hello,%20I%20am%20interested%20in%20joining%20the%20Grief%20Workshops"}
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="inline-block bg-purple-600 text-white px-8 py-4 rounded-full font-semibold hover:bg-purple-700 transition-all duration-300 shadow-lg"
               >
-                Inscribirme a Talleres
+                {lang === "es" ? "Inscribirme a Talleres" : "Sign Up for Workshops"}
               </motion.a>
             </motion.div>
           </motion.div>

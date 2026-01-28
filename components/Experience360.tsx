@@ -1,6 +1,7 @@
-'use client';
+"use client";
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useContext } from 'react';
+import { LangContext } from './LangContext';
 import { motion, useInView } from 'framer-motion';
 
 export default function Experience360() {
@@ -8,6 +9,7 @@ export default function Experience360() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [loaded, setLoaded] = useState(false);
   const [fullscreen, setFullscreen] = useState(false);
+  const { lang } = useContext(LangContext) ?? { lang: 'es' };
 
   const matterportUrl = "https://my.matterport.com/models/gXBj66LW7wm?section=media";
 
@@ -21,12 +23,22 @@ export default function Experience360() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Recorre Nuestro Parque <span className="text-emerald-600">Virtualmente</span></h2>
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            {lang === 'es' ? (
+              <>Recorre Nuestro Parque <span className="text-emerald-600">Virtualmente</span></>
+            ) : (
+              <>Tour Our Park <span className="text-emerald-600">Virtually</span></>
+            )}
+          </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-4">
-            Explora cada rincón de Jardines de Renacer desde casa. Una experiencia inmersiva en 360° que te permite conocer nuestros espacios con confianza y tranquilidad antes de visitarnos.
+            {lang === 'es'
+              ? 'Explora cada rincón de Jardines de Renacer desde casa. Una experiencia inmersiva en 360° que te permite conocer nuestros espacios con confianza y tranquilidad antes de visitarnos.'
+              : 'Explore every corner of Jardines de Renacer from home. An immersive 360° experience that lets you discover our spaces with confidence and peace of mind before visiting.'}
           </p>
           <p className="text-lg text-emerald-600 font-semibold">
-            ✓ Diferencial: Transparencia total en tu decisión
+            {lang === 'es'
+              ? '✓ Diferencial: Transparencia total en tu decisión'
+              : '✓ Our Difference: Total transparency for your decision'}
           </p>
         </motion.div>
 
@@ -40,14 +52,16 @@ export default function Experience360() {
             {!loaded ? (
               <div className="absolute inset-0 flex items-center justify-center p-4 bg-gradient-to-br from-green-50/90 to-blue-50/90 backdrop-blur-xl">
                 <div className="text-center glass-card p-8 rounded-2xl shadow-xl">
-                  <p className="text-gray-600 mb-4 text-lg font-semibold">Experiencia 360° disponible.</p>
+                  <p className="text-gray-600 mb-4 text-lg font-semibold">
+                    {lang === 'es' ? 'Experiencia 360° disponible.' : '360° Experience available.'}
+                  </p>
                   <motion.button
                     onClick={() => setLoaded(true)}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     className="bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-green-700 transition-colors"
                   >
-                    Cargar experiencia 360°
+                    {lang === 'es' ? 'Cargar experiencia 360°' : 'Load 360° experience'}
                   </motion.button>
                 </div>
               </div>
@@ -68,7 +82,7 @@ export default function Experience360() {
                   whileTap={{ scale: 0.95 }}
                   className="absolute top-4 right-4 bg-black/50 backdrop-blur-md text-white px-4 py-2 rounded-lg hover:bg-black/70 transition-all shadow-lg"
                 >
-                  Ver en pantalla completa
+                  {lang === 'es' ? 'Ver en pantalla completa' : 'View fullscreen'}
                 </motion.button>
               </>
             )}
@@ -76,11 +90,18 @@ export default function Experience360() {
 
           <div className="mt-8 text-center">
             <div className="grid md:grid-cols-3 gap-4 max-w-2xl mx-auto">
-              {[
-                { icon: "🖱️", text: "Arrastra para explorar" },
-                { icon: "🔍", text: "Zoom con scroll" },
-                { icon: "🔄", text: "Rotación automática" }
-              ].map((item, index) => (
+              {(lang === 'es'
+                ? [
+                    { icon: "🖱️", text: "Arrastra para explorar" },
+                    { icon: "🔍", text: "Zoom con scroll" },
+                    { icon: "🔄", text: "Rotación automática" }
+                  ]
+                : [
+                    { icon: "🖱️", text: "Drag to explore" },
+                    { icon: "🔍", text: "Zoom with scroll" },
+                    { icon: "🔄", text: "Auto rotation" }
+                  ]
+              ).map((item, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
@@ -109,7 +130,7 @@ export default function Experience360() {
             onClick={() => setFullscreen(false)}
             className="absolute top-4 right-4 text-white text-3xl bg-black/50 px-4 py-2 rounded hover:bg-black/70 z-10"
           >
-            Cerrar
+            {lang === 'es' ? 'Cerrar' : 'Close'}
           </button>
           <iframe
             src={matterportUrl}
@@ -117,7 +138,7 @@ export default function Experience360() {
             height="100%"
             frameBorder="0"
             allow="xr-spatial-tracking; fullscreen; autoplay"
-            title="Tour 360° Jardines de Renacer - Pantalla Completa"
+            title={lang === 'es' ? 'Tour 360° Jardines de Renacer - Pantalla Completa' : '360° Tour Jardines de Renacer - Fullscreen'}
           />
         </motion.div>
       )}

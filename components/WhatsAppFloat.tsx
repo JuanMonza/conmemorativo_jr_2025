@@ -1,10 +1,17 @@
-'use client';
 
+"use client";
 import { motion } from 'framer-motion';
+import { useContext } from 'react';
+import { LangContext } from './LangContext';
 
 export default function WhatsAppFloat() {
-  const mensaje = encodeURIComponent("*PARQUE CONMEMORATIVO JARDINES DEL RENACER*\n\nHola, estoy interesado en conocer más información sobre sus servicios y programas disponibles.\n\n_Solicitud enviada desde: www.parqueconmemorativo.jardinesdelrenacer.co_");
-  
+  const { lang } = useContext(LangContext);
+  const mensaje = encodeURIComponent(
+    lang === 'es'
+      ? '*PARQUE CONMEMORATIVO JARDINES DEL RENACER*\n\nHola, estoy interesado en conocer más información sobre sus servicios y programas disponibles.\n\n_Solicitud enviada desde: www.parqueconmemorativo.jardinesdelrenacer.co_'
+      : '*PARQUE CONMEMORATIVO JARDINES DEL RENACER*\n\nHello, I am interested in learning more about your available services and programs.\n\n_Request sent from: www.parqueconmemorativo.jardinesdelrenacer.co_'
+  );
+
   return (
     <motion.a
       href={`https://wa.me/573228147191?text=${mensaje}`}

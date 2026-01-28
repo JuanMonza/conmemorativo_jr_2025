@@ -1,11 +1,13 @@
-'use client';
+"use client";
 
 import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, useContext } from 'react';
+import { LangContext } from './LangContext';
 
 export default function Contact() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { lang } = useContext(LangContext) ?? { lang: 'es' };
 
   const socials = [
     { 
@@ -39,10 +41,16 @@ export default function Contact() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-6 title-underline title-shadow">
-            <span className="text-emerald-600">Contáctanos</span>
+            {lang === 'es' ? (
+              <span className="text-emerald-600">Contáctanos</span>
+            ) : (
+              <span className="text-emerald-600">Contact Us</span>
+            )}
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Estamos aquí para acompañarte y responder todas tus preguntas
+            {lang === 'es'
+              ? 'Estamos aquí para acompañarte y responder todas tus preguntas'
+              : 'We are here to support you and answer all your questions'}
           </p>
         </motion.div>
 
@@ -54,8 +62,12 @@ export default function Contact() {
           >
             <div className="glass-card p-8 rounded-2xl shadow-xl"
               style={{ background: 'linear-gradient(135deg, rgba(220, 252, 231, 0.85), rgba(219, 234, 254, 0.85))' }}>
-              <h3 className="text-2xl font-bold text-gray-800 mb-6 text-center">Contáctanos por WhatsApp</h3>
-              <p className="text-gray-600 mb-6 text-center">Escríbenos directamente y recibe atención personalizada inmediata</p>
+              <h3 className="text-2xl font-bold text-gray-800 mb-6 text-center">
+                {lang === 'es' ? 'Contáctanos por WhatsApp' : 'Contact us via WhatsApp'}
+              </h3>
+              <p className="text-gray-600 mb-6 text-center">
+                {lang === 'es' ? 'Escríbenos directamente y recibe atención personalizada inmediata' : 'Write to us directly and receive immediate personalized attention'}
+              </p>
               <div className="flex justify-center mb-6">
                 <div className="w-24 h-24 bg-white/80 backdrop-blur-md rounded-full flex items-center justify-center shadow-lg border-2 border-green-200">
                   <img 
@@ -66,16 +78,20 @@ export default function Contact() {
                 </div>
               </div>
               <motion.a
-                href="https://wa.me/573228147191?text=Hola,%20quiero%20más%20información%20sobre%20Jardines%20de%20Renacer"
+                href={lang === 'es'
+                  ? 'https://wa.me/573228147191?text=Hola,%20quiero%20más%20información%20sobre%20Jardines%20de%20Renacer'
+                  : 'https://wa.me/573228147191?text=Hello,%20I%20want%20more%20information%20about%20Jardines%20de%20Renacer'}
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="block w-full bg-green-500 text-white text-center py-4 px-6 rounded-full hover:bg-green-600 transition-all duration-300 font-semibold text-lg shadow-lg"
               >
-                Chatear en WhatsApp
+                {lang === 'es' ? 'Chatear en WhatsApp' : 'Chat on WhatsApp'}
               </motion.a>
-              <p className="text-center text-gray-600 mt-4">Línea: <strong>322 814 7191</strong></p>
+              <p className="text-center text-gray-600 mt-4">
+                {lang === 'es' ? 'Línea' : 'Line'}: <strong>322 814 7191</strong>
+              </p>
             </div>
           </motion.div>
 
@@ -86,7 +102,9 @@ export default function Contact() {
             className="space-y-8"
           >
             <div>
-              <h3 className="text-xl font-semibold text-gray-800 mb-4">Información de Contacto</h3>
+              <h3 className="text-xl font-semibold text-gray-800 mb-4">
+                {lang === 'es' ? 'Información de Contacto' : 'Contact Information'}
+              </h3>
               <div className="space-y-4">
                 <div className="flex items-center">
                   <div className="w-10 h-10 bg-emerald-100 rounded-full flex items-center justify-center mr-3">
@@ -94,7 +112,11 @@ export default function Contact() {
                       <path fillRule="evenodd" d="M11.54 22.351l.07.04.028.016a.76.76 0 00.723 0l.028-.015.071-.041a16.975 16.975 0 001.144-.742 19.58 19.58 0 002.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 00-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 002.682 2.282 16.975 16.975 0 001.145.742zM12 13.5a3 3 0 100-6 3 3 0 000 6z" clipRule="evenodd"/>
                     </svg>
                   </div>
-                  <span className="text-gray-700">Cartago, Valle del Cauca - Km 2.5 vía Zaragoza</span>
+                  <span className="text-gray-700">
+                    {lang === 'es'
+                      ? 'Cartago, Valle del Cauca - Km 2.5 vía Zaragoza'
+                      : 'Cartago, Valle del Cauca - Km 2.5 Zaragoza road'}
+                  </span>
                 </div>
                 <div className="flex items-center">
                   <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
@@ -129,16 +151,29 @@ export default function Contact() {
             </div>
 
             <div>
-              <h3 className="text-xl font-semibold text-gray-800 mb-4">Horarios de Atención</h3>
+              <h3 className="text-xl font-semibold text-gray-800 mb-4">
+                {lang === 'es' ? 'Horarios de Atención' : 'Opening Hours'}
+              </h3>
               <div className="space-y-2 text-gray-700">
-                <div className="flex justify-between"><span>Lunes - Viernes:</span> <span>7:30 AM - 5:00 PM</span></div>
-                <div className="flex justify-between"><span>Sábados:</span> <span>7:30 AM - 5:00 PM</span></div>
-                <div className="flex justify-between"><span>Domingos:</span> <span>Cerrado</span></div>
+                <div className="flex justify-between">
+                  <span>{lang === 'es' ? 'Lunes - Viernes:' : 'Monday - Friday:'}</span>
+                  <span>7:30 AM - 5:00 PM</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>{lang === 'es' ? 'Sábados:' : 'Saturdays:'}</span>
+                  <span>7:30 AM - 5:00 PM</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>{lang === 'es' ? 'Domingos:' : 'Sundays:'}</span>
+                  <span>{lang === 'es' ? 'Cerrado' : 'Closed'}</span>
+                </div>
               </div>
             </div>
 
             <div>
-              <h3 className="text-xl font-semibold text-gray-800 mb-4">Síguenos en Redes Sociales</h3>
+              <h3 className="text-xl font-semibold text-gray-800 mb-4">
+                {lang === 'es' ? 'Síguenos en Redes Sociales' : 'Follow us on Social Media'}
+              </h3>
               <div className="flex space-x-4">
                 {socials.map((social, index) => (
                   <motion.a
