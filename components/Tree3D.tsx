@@ -161,7 +161,8 @@ export default function Tree3D() {
   const [isPlaying, setIsPlaying] = useState(true);
   const [volume, setVolume] = useState(0.5);
   const dragRef = useRef({ x: 0, y: 0, targetX: 0, targetY: 0 });
-  const [selectedQuote, setSelectedQuote] = useState<string | null>(null);
+  // selectedQuote almacena el índice del dicho seleccionado (o null)
+  const [selectedQuote, setSelectedQuote] = useState<number | null>(null);
   const quotes = lang === 'es' ? quotesES : quotesEN;
 
   useEffect(() => {
@@ -233,8 +234,8 @@ export default function Tree3D() {
         // Hacer que mire hacia el centro
         sprite.lookAt(0, 0, 0);
 
-        // Hacer el sprite interactivo
-        (sprite as any).userData.quote = quote.text + ' — ' + quote.author;
+        // Guardar el índice del dicho en userData
+        (sprite as any).userData.quoteIndex = index;
 
         treeGroup.add(sprite);
       });
@@ -260,11 +261,10 @@ export default function Tree3D() {
 
       if (treeGroup) {
         const intersects = raycaster.intersectObjects(treeGroup.children);
-        
         for (let i = 0; i < intersects.length; i++) {
-          const quote = (intersects[i].object as any).userData.quote;
-          if (quote) {
-            setSelectedQuote(quote);
+          const idx = (intersects[i].object as any).userData.quoteIndex;
+          if (typeof idx === 'number') {
+            setSelectedQuote(idx);
             setTimeout(() => setSelectedQuote(null), 4000); // Auto cerrar después de 4 segundos
             break;
           }
@@ -441,7 +441,7 @@ export default function Tree3D() {
             }}
           >
             {/* Dicho seleccionado debajo del canvas */}
-            {selectedQuote && (
+            {selectedQuote !== null && (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -450,7 +450,9 @@ export default function Tree3D() {
               >
                 <div className="bg-gradient-to-r from-emerald-100 to-blue-100 border-2 border-emerald-500 rounded-2xl p-4 shadow-2xl">
                   <p className="text-sm font-semibold text-gray-800 italic text-center">
-                    "{selectedQuote}"
+                    "{quotes[selectedQuote].text}"
+                    <br />
+                    <span className="block mt-2 text-xs text-gray-500">— {quotes[selectedQuote].author}</span>
                   </p>
                 </div>
               </motion.div>
