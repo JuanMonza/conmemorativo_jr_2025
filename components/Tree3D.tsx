@@ -164,8 +164,6 @@ export default function Tree3D() {
   // selectedQuote almacena el índice del dicho seleccionado (o null)
   const [selectedQuote, setSelectedQuote] = useState<number | null>(null);
   const quotes = lang === 'es' ? quotesES : quotesEN;
-  // Referencia a los sprites de los dichos para poder actualizarlos dinámicamente
-  const quoteSpritesRef = useRef<THREE.Sprite[]>([]);
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -181,11 +179,11 @@ export default function Tree3D() {
       containerRef.current.clientWidth / containerRef.current.clientHeight,
       0.1,
       1000
-    });
+    );
+    camera.position.z = 5;
 
-  }, [lang]);
-
-  // Raycaster para detectar clics
+    // Configurar renderizador
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setSize(containerRef.current.clientWidth, containerRef.current.clientHeight);
     renderer.shadowMap.enabled = true;
     containerRef.current.appendChild(renderer.domElement);
@@ -224,7 +222,6 @@ export default function Tree3D() {
 
       // Agregar dichos alrededor del árbol
       const radius = 3;
-      quoteSpritesRef.current = [];
       quotes.forEach((quote, index) => {
         const angle = (index / quotes.length) * Math.PI * 2;
         const x = Math.cos(angle) * radius;
@@ -241,7 +238,6 @@ export default function Tree3D() {
         (sprite as any).userData.quoteIndex = index;
 
         treeGroup.add(sprite);
-        quoteSpritesRef.current.push(sprite);
       });
 
       setIsLoading(false);
@@ -249,33 +245,6 @@ export default function Tree3D() {
       console.error('Error cargando el modelo:', error);
       setIsLoading(false);
     });
-    // ...resto del useEffect original...
-  }, []);
-
-  // Efecto para actualizar los sprites de los dichos cuando cambia el idioma
-  useEffect(() => {
-    // Solo si ya hay sprites y grupo
-    if (!treeGroupRef.current || !quoteSpritesRef.current.length) return;
-    // Eliminar los sprites actuales
-    quoteSpritesRef.current.forEach(sprite => {
-      treeGroupRef.current!.remove(sprite);
-    });
-    // Crear y agregar nuevos sprites con el idioma actual
-    const radius = 3;
-    quoteSpritesRef.current = [];
-    quotes.forEach((quote, index) => {
-      const angle = (index / quotes.length) * Math.PI * 2;
-      const x = Math.cos(angle) * radius;
-      const z = Math.sin(angle) * radius;
-      const y = Math.cos(index / quotes.length * Math.PI) * 0.8;
-      const sprite = createTextSprite(quote.text, quote.author, 50);
-      sprite.position.set(x, y, z);
-      sprite.lookAt(0, 0, 0);
-      (sprite as any).userData.quoteIndex = index;
-      treeGroupRef.current!.add(sprite);
-      quoteSpritesRef.current.push(sprite);
-    });
-  }, [lang]);
 
     // Raycaster para detectar clics
     const raycaster = new THREE.Raycaster();
