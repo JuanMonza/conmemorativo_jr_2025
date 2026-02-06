@@ -5,7 +5,7 @@ import { useContext } from 'react';
 import { LangContext } from './LangContext';
 
 export default function WhatsAppFloat() {
-  const { lang } = useContext(LangContext);
+  const { lang } = useContext(LangContext) ?? { lang: 'es' };
   const mensaje = encodeURIComponent(
     lang === 'es'
       ? '*PARQUE CONMEMORATIVO JARDINES DEL RENACER*\n\nHola, estoy interesado en conocer más información sobre sus servicios y programas disponibles.\n\n_Solicitud enviada desde: www.parqueconmemorativo.jardinesdelrenacer.co_'

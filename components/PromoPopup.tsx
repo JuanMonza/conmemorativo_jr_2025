@@ -7,7 +7,7 @@ import { LangContext } from './LangContext';
 
 export default function PromoPopup() {
   const [isOpen, setIsOpen] = useState(false);
-  const { lang } = useContext(LangContext);
+  const { lang } = useContext(LangContext) ?? { lang: 'es' };
 
   useEffect(() => {
     // Mostrar el popup después de 3 segundos

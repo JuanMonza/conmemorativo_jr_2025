@@ -6,7 +6,7 @@ import { LangContext } from './LangContext';
 
 export default function FloatingQuoteReminder() {
   const [isOpen, setIsOpen] = useState(false);
-  const { lang } = useContext(LangContext);
+  const { lang } = useContext(LangContext) ?? { lang: 'es' };
 
   useEffect(() => {
     // Mostrar el popup después de 10 segundos de navegación

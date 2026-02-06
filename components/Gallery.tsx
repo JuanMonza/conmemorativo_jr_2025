@@ -10,7 +10,7 @@ export default function Gallery() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
   const [currentSlide, setCurrentSlide] = useState(0);
-  const { lang } = useContext(LangContext);
+  const { lang } = useContext(LangContext) ?? { lang: 'es' };
 
   const images = [
     {

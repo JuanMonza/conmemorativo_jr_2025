@@ -7,7 +7,7 @@ import { LangContext } from './LangContext';
 export default function CorporateExperience() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const { lang } = useContext(LangContext);
+  const { lang } = useContext(LangContext) ?? { lang: 'es' };
 
   const benefits = [
     {

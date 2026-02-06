@@ -6,7 +6,7 @@ import { useContext } from 'react';
 import { LangContext } from './LangContext';
 
 export default function Footer() {
-  const { lang } = useContext(LangContext);
+  const { lang } = useContext(LangContext) ?? { lang: 'es' };
   const links = [
     { href: "#inicio", label: lang === 'es' ? "Inicio" : "Home" },
     { href: "#introduccion", label: lang === 'es' ? "Un Espacio de Paz" : "A Place of Peace" },

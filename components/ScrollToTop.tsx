@@ -6,7 +6,7 @@ import { LangContext } from './LangContext';
 
 export default function ScrollToTop() {
   const [isVisible, setIsVisible] = useState(false);
-  const { lang } = useContext(LangContext);
+  const { lang } = useContext(LangContext) ?? { lang: 'es' };
 
   useEffect(() => {
     const toggleVisibility = () => {

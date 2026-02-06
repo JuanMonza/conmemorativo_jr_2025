@@ -9,7 +9,7 @@ import { LangContext } from './LangContext';
 export default function Location() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const { lang } = useContext(LangContext);
+  const { lang } = useContext(LangContext) ?? { lang: 'es' };
 
   const openGoogleMaps = () => {
     const destination = "4.711330,-75.920030";
