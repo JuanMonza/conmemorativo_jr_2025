@@ -156,16 +156,8 @@ export default function Contact() {
               </h3>
               <div className="space-y-2 text-gray-700">
                 <div className="flex justify-between">
-                  <span>{lang === 'es' ? 'Lunes - Viernes:' : 'Monday - Friday:'}</span>
-                  <span>7:30 AM - 5:00 PM</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>{lang === 'es' ? 'Sábados:' : 'Saturdays:'}</span>
-                  <span>7:30 AM - 5:00 PM</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>{lang === 'es' ? 'Domingos:' : 'Sundays:'}</span>
-                  <span>{lang === 'es' ? 'Cerrado' : 'Closed'}</span>
+                  <span>{lang === 'es' ? 'Todos los días:' : 'Every day:'}</span>
+                  <span className="font-semibold text-emerald-600">24/7</span>
                 </div>
               </div>
             </div>

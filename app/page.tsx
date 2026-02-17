@@ -1,6 +1,6 @@
 import Navbar from '@/components/Navbar';
-import Hero from '@/components/Hero';
 import Introduction from '@/components/Introduction';
+import ModernBanner from '@/components/ModernBanner';
 import Purpose from '@/components/Purpose';
 import Benefits from '@/components/Benefits';
 import Services from '@/components/Services';
@@ -23,7 +23,7 @@ export default function Home() {
   return (
     <main className="min-h-screen overflow-x-hidden">
       <Navbar />
-      <Hero />
+      <ModernBanner />
       <Introduction />
       <Purpose />
       <Benefits />

@@ -124,8 +124,11 @@ export default function Hero() {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8 }}
-          className="bg-white/10 backdrop-blur-xl border-2 border-white/20 rounded-3xl p-8 md:p-12 shadow-2xl"
+          className="liquid-glass-dark relative rounded-3xl p-8 md:p-16 overflow-hidden"
         >
+          {/* Decorative liquid elements */}
+          <div className="absolute -top-40 -right-40 w-80 h-80 blob bg-gradient-to-br from-emerald-500/30 to-cyan-500/20 -z-10" />
+          <div className="absolute -bottom-40 -left-40 w-80 h-80 blob bg-gradient-to-tr from-blue-500/30 to-purple-500/20 -z-10" />
           <AnimatePresence mode="wait">
             {frases.map((frase, idx) =>
               fraseIndex === idx && (

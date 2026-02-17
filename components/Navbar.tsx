@@ -41,10 +41,10 @@ export default function Navbar() {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
-        className={`fixed top-0 w-full z-50 transition-all duration-300 border-b-4 ${
+        className={`fixed top-0 w-full z-50 transition-all duration-300 ${
           isScrolled 
-            ? 'bg-white/85 backdrop-blur-xl shadow-2xl border-emerald-500/40' 
-            : 'bg-white/75 backdrop-blur-lg shadow-lg border-emerald-400/30'
+            ? 'bg-white/90 backdrop-blur-md shadow-lg' 
+            : 'bg-white/70 backdrop-blur-sm'
         }`}
       >
         <div className="max-w-7xl mx-auto">

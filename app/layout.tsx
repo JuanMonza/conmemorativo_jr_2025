@@ -4,6 +4,7 @@ import "./globals.css";
 import FloatingQuoteReminder from "@/components/FloatingQuoteReminder";
 import Analytics from "@/components/Analytics";
 import LangProvider from "@/components/LangProvider";
+import { Toaster } from "sileo";
 
 export const metadata: Metadata = {
   title: "Jardines de Renacer - Cenizarios y Osarios en Cartago",
@@ -40,6 +41,7 @@ export default function RootLayout({
           <Analytics />
           {children}
           <FloatingQuoteReminder />
+          <Toaster />
         </LangProvider>
       </body>
     </html>
